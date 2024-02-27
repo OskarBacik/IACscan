@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/squareup_okhttp3_okhttp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BACscan.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/endpoints/EndpointManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/tokens/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_core.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BACscan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BACscan.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/tokens/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,12 +118,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708988657571</updated>
-      <workItem from="1708988658626" duration="8316000" />
+      <workItem from="1708988658626" duration="14203000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <created>1709000381856</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709000381856</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

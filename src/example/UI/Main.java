@@ -7,6 +7,7 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
@@ -22,7 +23,6 @@ public class Main extends JFrame{
   private JButton addEndpointsButton;
   private JLabel addEndpointsLabel;
   private JPanel AddTokensPanel;
-  private JPanel ViewTokensPanel;
   private JLabel addTokensLabel;
   private JTextField addTokensName;
   private JTextField addTokensHeader;
@@ -39,6 +39,8 @@ public class Main extends JFrame{
   private JPanel EvaluatePanel;
   private JButton evaluateButton;
   private JProgressBar evaluateBar;
+  private JScrollPane ViewTokensPanel;
+  private JButton deleteTokenButton;
 
   public Main() {
 
@@ -47,6 +49,7 @@ public class Main extends JFrame{
     tokenManager = new TokenManager();
     requestManager = new RequestManager();
 
+    // Main frame settings
     setContentPane(MainPanel);
     setTitle("BACscan");
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +65,16 @@ public class Main extends JFrame{
       addEndpointsUrl.setText("");
     });
 
+
+    // token table
+
+    // Example data - TODO: Remove
+    tokenManager.addToken(new Token("admin", "JWT", "token1"));
+    tokenManager.addToken(new Token("user", "JWT", "token2"));
+
+    TokenTableModel tableModel = new TokenTableModel();
+    viewTokensTable.setModel(tableModel);
+
     // Add token button
     addTokensButton.addActionListener(e -> {
       Token newToken = new Token(addTokensName.getText(), addTokensHeader.getText(), addTokensValue.getText());
@@ -69,14 +82,33 @@ public class Main extends JFrame{
       addTokensName.setText("");
       addTokensHeader.setText("");
       addTokensValue.setText("");
+      tableModel.setDataVector(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+      tableModel.fireTableDataChanged();
     });
 
-    // token table
-    viewTokensTable = new JTable();
+    // Delete token button
+    deleteTokenButton.addActionListener(e -> {
+      if(viewTokensTable.getSelectedRow() != -1) { // no row selected = error
+        tokenManager.deleteById(Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(),0)));
+        tableModel.setDataVector(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+        tableModel.fireTableDataChanged();
+      }
+    });
+
   }
 
   public static void main(String[] args) {
     new Main();
+  }
+
+  class TokenTableModel extends DefaultTableModel {
+    public TokenTableModel() {
+      super(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+    }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      return false;
+    }
   }
 
   public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager) {

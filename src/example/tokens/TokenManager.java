@@ -19,4 +19,27 @@ public class TokenManager {
   public void addToken(Token token) {
     tokenList.add(token);
   }
+
+  public String[][] convertTokensToStringArray() {
+    String[][] result = new String[tokenList.size()][4];
+
+    for (int i = 0; i < tokenList.size(); i++) {
+      Token token = tokenList.get(i);
+      result[i][0] = String.valueOf(token.getId());
+      result[i][1] = token.getLabel();
+      result[i][2] = token.getHeaderName();
+      result[i][3] = token.getValue();
+    }
+
+    return result;
+  }
+
+  public void deleteById(int id) {
+    for (Token token : tokenList) {
+      if (token.getId() == id) {
+        tokenList.remove(token);
+        return;
+      }
+    }
+  }
 }
