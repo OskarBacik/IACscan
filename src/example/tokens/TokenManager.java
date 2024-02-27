@@ -20,7 +20,7 @@ public class TokenManager {
     tokenList.add(token);
   }
 
-  public String[][] convertTokensToStringArray() {
+  public String[][] toStringArray() {
     String[][] result = new String[tokenList.size()][4];
 
     for (int i = 0; i < tokenList.size(); i++) {

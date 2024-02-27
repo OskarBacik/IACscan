@@ -26,7 +26,7 @@ public class Main extends JFrame{
   private JLabel addTokensLabel;
   private JTextField addTokensName;
   private JTextField addTokensHeader;
-  private JTextField addTokensValue;
+  private JTextArea addTokensToken;
   private JButton addTokensButton;
   private JTable viewTokensTable;
   private JLabel addTokensLabel1;
@@ -35,12 +35,16 @@ public class Main extends JFrame{
   private JSeparator endpointsSep;
   private JTextArea addEndpointsPost;
   private JLabel addEndpointsLabel1;
-  private JTable table1;
+  private JTable viewEndpointsTable;
   private JPanel EvaluatePanel;
   private JButton evaluateButton;
   private JProgressBar evaluateBar;
   private JScrollPane ViewTokensPanel;
   private JButton deleteTokenButton;
+  private JScrollPane ViewEndpointsPanel;
+  private JLabel addEndpointsLabel2;
+  private JTextField addEndpointsContentType;
+  private JPanel addEndpointsBodyPanel;
 
   public Main() {
 
@@ -58,40 +62,63 @@ public class Main extends JFrame{
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
 
+    // ENDPOINTS
+
+    // Example data - TODO: Remove
+    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+            "exampleBody", "application/json"));
+
+    EndpointsTableModel endpointsTableModel = new EndpointsTableModel();
+    viewEndpointsTable.setModel(endpointsTableModel);
+    addEndpointsBodyPanel.setVisible(false);
+
+    // hide body panel if method is GET or DELETE
+    addEndpointsMethod.addActionListener(e -> {
+      String selectedMethod = (String) addEndpointsMethod.getSelectedItem();
+      if ("GET".equals(selectedMethod) || "DELETE".equals(selectedMethod)) {
+        addEndpointsBodyPanel.setVisible(false);
+      } else {
+        addEndpointsBodyPanel.setVisible(true);
+      }
+    });
+
     // Add endpoint button
     addEndpointsButton.addActionListener(e -> {
-      Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),null); // TODO: Fix to work with POST
+      Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
+              addEndpointsPost.getText(), addEndpointsContentType.getText());
       endpointManager.addEndpoint(newEndpoint);
       addEndpointsUrl.setText("");
+      endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+      endpointsTableModel.fireTableDataChanged();
     });
 
 
-    // token table
+    // TOKENS
 
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "JWT", "token1"));
     tokenManager.addToken(new Token("user", "JWT", "token2"));
 
-    TokenTableModel tableModel = new TokenTableModel();
-    viewTokensTable.setModel(tableModel);
+    TokenTableModel tokenTableModel = new TokenTableModel();
+    viewTokensTable.setModel(tokenTableModel);
 
     // Add token button
     addTokensButton.addActionListener(e -> {
-      Token newToken = new Token(addTokensName.getText(), addTokensHeader.getText(), addTokensValue.getText());
+      Token newToken = new Token(addTokensName.getText(), addTokensHeader.getText(), addTokensToken.getText());
       tokenManager.addToken(newToken);
       addTokensName.setText("");
       addTokensHeader.setText("");
-      addTokensValue.setText("");
-      tableModel.setDataVector(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
-      tableModel.fireTableDataChanged();
+      addTokensToken.setText("");
+      tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+      tokenTableModel.fireTableDataChanged();
     });
 
     // Delete token button
     deleteTokenButton.addActionListener(e -> {
       if(viewTokensTable.getSelectedRow() != -1) { // no row selected = error
         tokenManager.deleteById(Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(),0)));
-        tableModel.setDataVector(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
-        tableModel.fireTableDataChanged();
+        tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+        tokenTableModel.fireTableDataChanged();
       }
     });
 
@@ -101,10 +128,24 @@ public class Main extends JFrame{
     new Main();
   }
 
+  // custom table structure for tokens
   class TokenTableModel extends DefaultTableModel {
     public TokenTableModel() {
-      super(tokenManager.convertTokensToStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+      super(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
     }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      return false;
+    }
+  }
+
+  // custom table structure for endpoints
+  class EndpointsTableModel extends DefaultTableModel {
+
+    public EndpointsTableModel() {
+      super(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+    }
+
     @Override
     public boolean isCellEditable(int row, int column) {
       return false;
