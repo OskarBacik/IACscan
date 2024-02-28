@@ -2,12 +2,14 @@ package example.UI;
 
 import example.endpoints.Endpoint;
 import example.endpoints.EndpointManager;
+import example.requests.Request;
 import example.requests.RequestManager;
 import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
@@ -45,6 +47,8 @@ public class Main extends JFrame{
   private JTextField addEndpointsContentType;
   private JPanel addEndpointsBodyPanel;
   private JButton deleteEndpointsButton;
+  private JScrollPane ViewEvaluatePanel;
+  private JTable viewEvaluateTable;
 
   public Main() {
 
@@ -66,7 +70,11 @@ public class Main extends JFrame{
 
     // Example data - TODO: Remove
     endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
-            "exampleBody", "application/json"));
+            "", "application/json"));
+    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+            "", "application/json"));
+    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+            "", "application/json"));
 
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel();
     viewEndpointsTable.setModel(endpointsTableModel);
@@ -105,8 +113,8 @@ public class Main extends JFrame{
     // TOKENS
 
     // Example data - TODO: Remove
-    tokenManager.addToken(new Token("admin", "JWT", "token1"));
-    tokenManager.addToken(new Token("user", "JWT", "token2"));
+    tokenManager.addToken(new Token("admin", "Jwt", "token1"));
+    tokenManager.addToken(new Token("user", "Jwt", "token2"));
 
     TokenTableModel tokenTableModel = new TokenTableModel();
     viewTokensTable.setModel(tokenTableModel);
@@ -128,6 +136,21 @@ public class Main extends JFrame{
         tokenManager.deleteById(Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(),0)));
         tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
         tokenTableModel.fireTableDataChanged();
+      }
+    });
+
+
+    // EVALUATE
+
+    EvaluateTableModel evaluateTableModel = new EvaluateTableModel();
+    viewEvaluateTable.setModel(evaluateTableModel);
+
+    evaluateButton.addActionListener(e -> {
+      try {
+        evaluate(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
+        System.out.println("done");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
       }
     });
 
@@ -161,13 +184,36 @@ public class Main extends JFrame{
     }
   }
 
-  public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager) {
-    // clear request manager
+  class EvaluateTableModel extends DefaultTableModel {
+    public EvaluateTableModel() {
+      super(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
+    }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      return false;
+    }
+  }
 
-    // for endpoint in endpoints
-    // for token in tokens
-    // send request
-    // add request to request manager
+  public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
+                       EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
+    requestManager.clearList();
+
+    Integer totalEndpoints = (endpointManager.getEndpoints().size()+1)*tokenManager.getTokenList().size();
+    Integer progress = 0;
+    evaluateBar.setMaximum(totalEndpoints);
+
+    // send a request to each endpoint with each token
+    for(Endpoint endpoint: endpointManager.getEndpoints()) {
+      for(Token token: tokenManager.getTokenList()) {
+        requestManager.addRequest(new Request(endpoint,token));
+        evaluateTableModel.setDataVector(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
+        evaluateTableModel.fireTableDataChanged();
+        progress += 1;
+        evaluateBar.setValue(progress);
+        evaluateBar.setStringPainted(true);
+      }
+      // send a request for an unauthenticated user
+    }
 
     // for endpoint in endpoints
     // send request with different HTTP method
