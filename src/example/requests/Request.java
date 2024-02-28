@@ -12,6 +12,7 @@ public class Request {
   private int id;
   private Endpoint endpoint;
   private Token token;
+  private okhttp3.Request request;
   private Response response;
 
   public Request(Endpoint endpoint, Token token) throws IOException {
@@ -45,7 +46,7 @@ public class Request {
               .build();
     }
 
-
+    this.request = request;
     Response response = client.newCall(request).execute();
     this.response = response;
     response.close();
@@ -65,6 +66,10 @@ public class Request {
 
   public Token getToken() {
     return token;
+  }
+
+  public okhttp3.Request getRequest() {
+    return request;
   }
 
   public Response getResponse() {

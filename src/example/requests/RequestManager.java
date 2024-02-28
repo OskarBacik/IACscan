@@ -1,7 +1,5 @@
 package example.requests;
 
-import example.endpoints.Endpoint;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +35,9 @@ public class RequestManager {
     }
 
     return result;
+  }
+
+  public Request getById(int id) {
+    return requests.get(id-1);
   }
 }

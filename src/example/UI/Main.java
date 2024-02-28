@@ -49,6 +49,15 @@ public class Main extends JFrame{
   private JButton deleteEndpointsButton;
   private JScrollPane ViewEvaluatePanel;
   private JTable viewEvaluateTable;
+  private JPanel OverviewPanel;
+  private JTable viewOverviewTable;
+  private JScrollPane ViewOverviewPanel;
+  private JScrollPane DetailsOverviewPanel;
+  private JPanel DetailsEvaluatePanel;
+  private JLabel evaluateRequestLabel;
+  private JLabel evaluateResponseLabel;
+  private JTextPane evaluateRequestText;
+  private JTextPane evaluateResponseText;
 
   public Main() {
 
@@ -145,6 +154,7 @@ public class Main extends JFrame{
     EvaluateTableModel evaluateTableModel = new EvaluateTableModel();
     viewEvaluateTable.setModel(evaluateTableModel);
 
+    // Start button logic
     evaluateButton.addActionListener(e -> {
       try {
         evaluate(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
@@ -152,6 +162,13 @@ public class Main extends JFrame{
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
+    });
+
+    // Display row selection in info panel
+    viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
+      Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
+      evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString());
+      evaluateResponseText.setText(requestManager.getById(selectedId).getResponse().toString()); // TODO: get response body
     });
 
   }
@@ -196,6 +213,7 @@ public class Main extends JFrame{
 
   public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
                        EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
+
     requestManager.clearList();
 
     Integer totalEndpoints = (endpointManager.getEndpoints().size()+1)*tokenManager.getTokenList().size();
