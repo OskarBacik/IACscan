@@ -32,7 +32,6 @@ public class Main extends JFrame{
   private JLabel addTokensLabel1;
   private JLabel addTokensLabel2;
   private JLabel addTokensLabel3;
-  private JSeparator endpointsSep;
   private JTextArea addEndpointsPost;
   private JLabel addEndpointsLabel1;
   private JTable viewEndpointsTable;
@@ -45,6 +44,7 @@ public class Main extends JFrame{
   private JLabel addEndpointsLabel2;
   private JTextField addEndpointsContentType;
   private JPanel addEndpointsBodyPanel;
+  private JButton deleteEndpointsButton;
 
   public Main() {
 
@@ -90,6 +90,15 @@ public class Main extends JFrame{
       addEndpointsUrl.setText("");
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
+    });
+
+    // Delete endpoint button
+    deleteEndpointsButton.addActionListener(e -> {
+      if(viewEndpointsTable.getSelectedRow() != -1) { // no row selected = error
+        endpointManager.deleteById(Integer.parseInt((String) viewEndpointsTable.getValueAt(viewEndpointsTable.getSelectedRow(),0)));
+        endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+        endpointsTableModel.fireTableDataChanged();
+      }
     });
 
 
