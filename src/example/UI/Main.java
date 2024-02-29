@@ -13,6 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
@@ -199,9 +200,17 @@ public class Main extends JFrame{
 
     // Refresh button logic
     overviewTableRefreshButton.addActionListener(e -> {
+      // refresh table content
       requestManager.overviewToStringArray(endpointManager, tokenManager);
       overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
       overviewTableModel.fireTableDataChanged();
+      // refresh cell colour for all columns except 0
+      for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
+        if(columnIndex!=0) {
+          viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer());
+        }
+      }
+      viewOverviewTable.repaint();
     });
 
   }
@@ -231,6 +240,7 @@ public class Main extends JFrame{
         progress += 1;
         evaluateBar.setValue(progress);
         evaluateBar.setStringPainted(true);
+        evaluateBar.repaint();
       }
     }
     // for endpoint in endpoints
@@ -253,21 +263,19 @@ public class Main extends JFrame{
   static class OverviewTableColourRenderer extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-      // Call the superclass method to get the default rendering
       Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-      // Customize the rendering based on the cell value
-      if (value instanceof Integer) {
-        int age = (Integer) value;
-        // Change the background color based on the age value
-        if (age < 25) {
-          cellComponent.setBackground(Color.GREEN);
-        } else if (age > 30) {
-          cellComponent.setBackground(Color.RED);
-        } else {
-          // Default background color for other ages
-          cellComponent.setBackground(table.getBackground());
-        }
+      // colour code each cell based on the response code TODO: add more response codes
+      Object cell = table.getValueAt(row,column);
+      Integer responseCode = Integer.parseInt((String) cell);
+      if (responseCode == 200) {
+        cellComponent.setBackground(Color.GREEN);
+      } else if (responseCode == 403) {
+        cellComponent.setBackground(Color.RED);
+      } else if (responseCode == 404) {
+        cellComponent.setBackground(Color.GRAY);
+      } else {
+        cellComponent.setBackground(table.getBackground());
       }
 
       return cellComponent;

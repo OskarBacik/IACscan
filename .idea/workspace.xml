@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Extracted table models from main">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Formatting and comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
     </list>
@@ -120,7 +120,7 @@
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
-      <workItem from="1709158759336" duration="7341000" />
+      <workItem from="1709158759336" duration="9092000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -171,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709165695050</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Formatting and comments">
+      <created>1709166169452</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709166169452</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +203,8 @@
     <MESSAGE value="Added request and response detail windows to Evaluate panel" />
     <MESSAGE value="Created overview table" />
     <MESSAGE value="Extracted table models from main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extracted table models from main" />
+    <MESSAGE value="Formatting and comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatting and comments" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
