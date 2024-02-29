@@ -6,12 +6,15 @@ import example.requests.Request;
 import example.requests.RequestManager;
 import example.tokens.Token;
 import example.tokens.TokenManager;
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -91,6 +94,7 @@ public class Main extends JFrame{
 
     // ENDPOINTS
 
+    /*
     // Example data - TODO: Remove
     endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
             "", "application/json"));
@@ -98,6 +102,8 @@ public class Main extends JFrame{
             "", "application/json"));
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
+     */
+    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET", "", "application/json"));
 
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
@@ -136,11 +142,13 @@ public class Main extends JFrame{
 
     // TOKENS
 
+    /*
     // Unauthenticated example token
     tokenManager.addToken(new Token("Unauthenticated", "", ""));
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
-    tokenManager.addToken(new Token("user", "Jwt", "token2"));
+    tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
+    tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
 
     // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
@@ -177,6 +185,9 @@ public class Main extends JFrame{
     evaluateButton.addActionListener(e -> {
       try {
         sendRequests(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
+        evaluateTableModel.setDataVector(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
+        evaluateTableModel.fireTableDataChanged();
+        newOverviewTable();
         System.out.println("done");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
@@ -186,8 +197,28 @@ public class Main extends JFrame{
     // Display row selection in evaluate info panel
     viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
       Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
+      Request selectedRequest = requestManager.getById(selectedId);
+
+      /*
+      // custom request formatting
+      String customRequest = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() + selectedRequest.getRequest().headers() + selectedRequest.getEndpoint().getBodyContent();
+      System.out.println(customRequest);
+       */
+
+      // original formatting
       evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString()); // TODO: reformat
       evaluateResponseText.setText(requestManager.getById(selectedId).getResponse().toString()); // TODO: get response body
+
+      /* custom response formatting
+      String jsonData = null;
+      try {
+        jsonData = requestManager.getById(selectedId).getResponse().body().string();
+      } catch (IOException ignore) {
+        ;
+      }
+      JSONObject jsonResponse = new JSONObject(jsonData);
+      System.out.println(jsonResponse.toString());
+      */
     });
 
 
@@ -197,11 +228,6 @@ public class Main extends JFrame{
     String[] overviewColumnNames = getOverviewColumnNames();
     OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
     viewOverviewTable.setModel(overviewTableModel);
-
-    // Refresh button logic
-    overviewTableRefreshButton.addActionListener(e -> {
-      newOverviewTable();
-    });
 
     // Display cell selection in overview info panel
     viewOverviewTable.getSelectionModel().addListSelectionListener(e -> {
@@ -239,8 +265,6 @@ public class Main extends JFrame{
     for(Endpoint endpoint: endpointManager.getEndpoints()) {
       for(Token token: tokenManager.getTokenList()) {
         requestManager.addRequest(new Request(endpoint,token));
-        evaluateTableModel.setDataVector(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
-        evaluateTableModel.fireTableDataChanged();
         progress += 1;
         evaluateBar.setValue(progress);
         evaluateBar.setStringPainted(true);

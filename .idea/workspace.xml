@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added ID to overview table&#10;Added request and response details windows to overview panel">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BACscan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BACscan.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +123,7 @@
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
       <workItem from="1709158759336" duration="10785000" />
-      <workItem from="1709185702235" duration="4375000" />
+      <workItem from="1709185702235" duration="9346000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -194,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709169019212</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Bug fixes">
+      <created>1709193533114</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709193533114</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,7 +230,18 @@
     <MESSAGE value="Formatting and comments" />
     <MESSAGE value="Added cell colours to overview table" />
     <MESSAGE value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
+    <MESSAGE value="Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
