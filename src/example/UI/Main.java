@@ -200,17 +200,7 @@ public class Main extends JFrame{
 
     // Refresh button logic
     overviewTableRefreshButton.addActionListener(e -> {
-      // refresh table content
-      requestManager.overviewToStringArray(endpointManager, tokenManager);
-      overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
-      overviewTableModel.fireTableDataChanged();
-      // refresh cell colour for all columns except ID and URL columns
-      for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
-        if(columnIndex>1) {
-          viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer());
-        }
-      }
-      viewOverviewTable.repaint();
+      newOverviewTable();
     });
 
     // Display cell selection in overview info panel
@@ -220,6 +210,8 @@ public class Main extends JFrame{
       Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
       overviewRequestText.setText(selectedRequest.getRequest().toString()); // TODO: reformat
       overviewResponseText.setText(selectedRequest.getResponse().toString()); // TODO: get response body
+      System.out.println(selectedRequest.getResponse().body().toString());
+      System.out.println(selectedRequest.getResponse().headers());
     });
 
   }
@@ -233,7 +225,10 @@ public class Main extends JFrame{
                            EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
 
     // clear request manager
-    requestManager.clearList();
+    if(requestManager.getRequests().size() > 0) {
+      requestManager.getRequests().get(0).resetId();
+      requestManager.clearList();
+    }
 
     // create progress bar
     Integer totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
@@ -267,6 +262,23 @@ public class Main extends JFrame{
       columnNames.add(token.getLabel());
     }
     return columnNames.toArray(new String[0]);
+  }
+
+  // Create or refresh table with new possible rows/columns
+  public void newOverviewTable() {
+    String[] overviewColumnNames = getOverviewColumnNames();
+    OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
+    viewOverviewTable.setModel(overviewTableModel);
+    // refresh table content
+    overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
+    overviewTableModel.fireTableDataChanged();
+    // refresh cell colour for all columns except ID and URL columns
+    for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
+      if(columnIndex>1) {
+        viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer());
+      }
+    }
+    viewOverviewTable.repaint();
   }
 
   // Custom colour renderer for Overview Table

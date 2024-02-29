@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added cell colours to overview table">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added ID to overview table&#10;Added request and response details windows to overview panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,32 +30,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "164",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/Users/home/IdeaProjects/BACscan/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "onboarding.tips.debug.path": "C:/Users/home/IdeaProjects/BACscan/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;164&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/home/IdeaProjects/BACscan/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/home/IdeaProjects/BACscan/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\home\IdeaProjects\BACscan\src" />
@@ -121,7 +121,8 @@
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
-      <workItem from="1709158759336" duration="9909000" />
+      <workItem from="1709158759336" duration="10785000" />
+      <workItem from="1709185702235" duration="4375000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -186,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709167999002</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added ID to overview table&#10;Added request and response details windows to overview panel">
+      <created>1709169019212</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709169019212</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +221,8 @@
     <MESSAGE value="Extracted table models from main" />
     <MESSAGE value="Formatting and comments" />
     <MESSAGE value="Added cell colours to overview table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cell colours to overview table" />
+    <MESSAGE value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

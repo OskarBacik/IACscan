@@ -4,6 +4,8 @@ import example.endpoints.Endpoint;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+
 import example.tokens.Token;
 
 public class Request {
@@ -80,6 +82,10 @@ public class Request {
 
   public int getId() {
     return id;
+  }
+
+  public void resetId() {
+    idCounter = 0;
   }
 
   public Endpoint getEndpoint() {
