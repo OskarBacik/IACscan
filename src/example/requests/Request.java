@@ -25,26 +25,48 @@ public class Request {
 
     okhttp3.Request request;
 
-    if ("GET".equals(endpoint.getMethod())) { // GET request
-      request = new okhttp3.Request.Builder()
-              .url(endpoint.getUrl())
-              .addHeader(token.getHeaderName(), token.getValue())
-              .build();
-    } else if ("DELETE".equals(endpoint.getMethod())) { // DELETE request
-      request = new okhttp3.Request.Builder()
-              .url(endpoint.getUrl())
-              .delete()
-              .addHeader("accept", "application/json")
-              .addHeader(token.getHeaderName(), token.getValue())
-              .build();
-    } else { // All other methods
-      request = new okhttp3.Request.Builder()
-              .url(endpoint.getUrl())
-              .method(endpoint.getMethod(), endpoint.getBody())
-              .addHeader("accept", "application/json")
-              .addHeader(token.getHeaderName(), token.getValue())
-              .build();
+    // unauthenticated request
+    if(token.getValue().equals("")) {
+      if ("GET".equals(endpoint.getMethod())) { // GET request
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .build();
+      } else if ("DELETE".equals(endpoint.getMethod())) { // DELETE request
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .delete()
+                .build();
+      } else { // All other methods
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .method(endpoint.getMethod(), endpoint.getBody())
+                .addHeader("accept", "application/json")
+                .build();
+      }
     }
+    // authenticated request
+    else {
+      if ("GET".equals(endpoint.getMethod())) { // GET request
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .addHeader(token.getHeaderName(), token.getValue())
+                .build();
+      } else if ("DELETE".equals(endpoint.getMethod())) { // DELETE request
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .delete()
+                .addHeader(token.getHeaderName(), token.getValue())
+                .build();
+      } else { // All other methods
+        request = new okhttp3.Request.Builder()
+                .url(endpoint.getUrl())
+                .method(endpoint.getMethod(), endpoint.getBody())
+                .addHeader("accept", "application/json")
+                .addHeader(token.getHeaderName(), token.getValue())
+                .build();
+      }
+    }
+
 
     this.request = request;
     Response response = client.newCall(request).execute();

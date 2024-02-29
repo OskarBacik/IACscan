@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added request functionality and basic display in evaluate">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added request and response detail windows to Evaluate panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
@@ -41,6 +41,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "164",
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
@@ -118,7 +119,8 @@
       <updated>1708988657571</updated>
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
-      <workItem from="1709081330123" duration="9338000" />
+      <workItem from="1709081330123" duration="9489000" />
+      <workItem from="1709158759336" duration="6498000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -148,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709086426419</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added request and response detail windows to Evaluate panel">
+      <created>1709091979318</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709091979318</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +179,8 @@
     <MESSAGE value="Added functioning token table" />
     <MESSAGE value="Added delete to endpoints" />
     <MESSAGE value="Added request functionality and basic display in evaluate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added request functionality and basic display in evaluate" />
+    <MESSAGE value="Added request and response detail windows to Evaluate panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added request and response detail windows to Evaluate panel" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

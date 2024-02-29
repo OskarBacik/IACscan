@@ -8,8 +8,12 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
@@ -25,7 +29,6 @@ public class Main extends JFrame{
   private JButton addEndpointsButton;
   private JLabel addEndpointsLabel;
   private JPanel AddTokensPanel;
-  private JLabel addTokensLabel;
   private JTextField addTokensName;
   private JTextField addTokensHeader;
   private JTextArea addTokensToken;
@@ -52,12 +55,22 @@ public class Main extends JFrame{
   private JPanel OverviewPanel;
   private JTable viewOverviewTable;
   private JScrollPane ViewOverviewPanel;
-  private JScrollPane DetailsOverviewPanel;
   private JPanel DetailsEvaluatePanel;
   private JLabel evaluateRequestLabel;
   private JLabel evaluateResponseLabel;
-  private JTextPane evaluateRequestText;
-  private JTextPane evaluateResponseText;
+  private JTextArea evaluateRequestText;
+  private JTextArea evaluateResponseText;
+  private JButton overviewTableRefreshButton;
+  private JScrollPane EvaluateRequestPanel;
+  private JScrollPane EvaluateResponsePanel;
+  private JPanel OverviewDetailsPanel;
+  private JLabel OverviewRequestLabel;
+  private JLabel OverviewResponseLabel;
+  private JScrollPane OverviewResponsePanel;
+  private JScrollPane OverviewRequestPanel;
+  private JTextArea overviewRequestText;
+  private JTextArea overviewResponseText;
+  private JLabel OverviewLabel;
 
   public Main() {
 
@@ -80,9 +93,9 @@ public class Main extends JFrame{
     // Example data - TODO: Remove
     endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
             "", "application/json"));
-    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+    endpointManager.addEndpoint(new Endpoint("https://google.com/doesntexist", "GET",
             "", "application/json"));
-    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+    endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
 
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel();
@@ -121,6 +134,7 @@ public class Main extends JFrame{
 
     // TOKENS
 
+    tokenManager.addToken(new Token("Unauthenticated", "", ""));
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));
@@ -167,8 +181,19 @@ public class Main extends JFrame{
     // Display row selection in info panel
     viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
       Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
-      evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString());
+      evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString()); // TODO: reformat
       evaluateResponseText.setText(requestManager.getById(selectedId).getResponse().toString()); // TODO: get response body
+    });
+
+    // OVERVIEW
+    String[] overviewColumnNames = getOverviewColumnNames();
+    OverviewTableModel overviewTableModel = new OverviewTableModel(overviewColumnNames);
+    viewOverviewTable.setModel(overviewTableModel);
+
+    overviewTableRefreshButton.addActionListener(e -> {
+      requestManager.overviewToStringArray(endpointManager, tokenManager);
+      overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
+      overviewTableModel.fireTableDataChanged();
     });
 
   }
@@ -190,11 +215,9 @@ public class Main extends JFrame{
 
   // custom table structure for endpoints
   class EndpointsTableModel extends DefaultTableModel {
-
     public EndpointsTableModel() {
       super(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
     }
-
     @Override
     public boolean isCellEditable(int row, int column) {
       return false;
@@ -211,14 +234,25 @@ public class Main extends JFrame{
     }
   }
 
+  class OverviewTableModel extends DefaultTableModel {
+    private String[] columnNames;
+    public OverviewTableModel(String[] columnNames) {
+      super(requestManager.toStringArray(), columnNames);
+    }
+    @Override
+    public boolean isCellEditable(int row, int column) {
+      return false;
+    }
+  }
+
   public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
                        EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
 
     requestManager.clearList();
 
-    Integer totalEndpoints = (endpointManager.getEndpoints().size()+1)*tokenManager.getTokenList().size();
+    Integer totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
     Integer progress = 0;
-    evaluateBar.setMaximum(totalEndpoints);
+    evaluateBar.setMaximum(totalEndpoints); // TODO: fix progress bar
 
     // send a request to each endpoint with each token
     for(Endpoint endpoint: endpointManager.getEndpoints()) {
@@ -230,12 +264,45 @@ public class Main extends JFrame{
         evaluateBar.setValue(progress);
         evaluateBar.setStringPainted(true);
       }
-      // send a request for an unauthenticated user
     }
 
     // for endpoint in endpoints
     // send request with different HTTP method
     // if not in endpoints
     // flag
+  }
+
+  public String[] getOverviewColumnNames() {
+    List<String> columnNames = new ArrayList<>();
+    columnNames.add("URL");
+    for(Token token: tokenManager.getTokenList()) {
+      columnNames.add(token.getLabel());
+    }
+    return columnNames.toArray(new String[0]);
+  }
+
+  // Custom colour renderer for Overview Table
+  static class OverviewTableColourRenderer extends DefaultTableCellRenderer {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+      // Call the superclass method to get the default rendering
+      Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+      // Customize the rendering based on the cell value
+      if (value instanceof Integer) {
+        int age = (Integer) value;
+        // Change the background color based on the age value
+        if (age < 25) {
+          cellComponent.setBackground(Color.GREEN);
+        } else if (age > 30) {
+          cellComponent.setBackground(Color.RED);
+        } else {
+          // Default background color for other ages
+          cellComponent.setBackground(table.getBackground());
+        }
+      }
+
+      return cellComponent;
+    }
   }
 }
