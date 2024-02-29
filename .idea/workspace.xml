@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added request and response detail windows to Evaluate panel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Created overview table">
+      <change afterPath="$PROJECT_DIR$/src/example/UI/EndpointsTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/EvaluateTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/OverviewTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/TokenTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +120,7 @@
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
-      <workItem from="1709158759336" duration="6498000" />
+      <workItem from="1709158759336" duration="6863000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -157,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709091979318</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created overview table">
+      <created>1709165591435</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709165591435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +187,8 @@
     <MESSAGE value="Added delete to endpoints" />
     <MESSAGE value="Added request functionality and basic display in evaluate" />
     <MESSAGE value="Added request and response detail windows to Evaluate panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added request and response detail windows to Evaluate panel" />
+    <MESSAGE value="Created overview table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created overview table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

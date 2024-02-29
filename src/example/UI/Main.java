@@ -9,7 +9,6 @@ import example.tokens.TokenManager;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,7 +97,7 @@ public class Main extends JFrame{
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
 
-    EndpointsTableModel endpointsTableModel = new EndpointsTableModel();
+    EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
     viewEndpointsTable.setModel(endpointsTableModel);
     addEndpointsBodyPanel.setVisible(false);
 
@@ -139,7 +138,7 @@ public class Main extends JFrame{
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));
 
-    TokenTableModel tokenTableModel = new TokenTableModel();
+    TokenTableModel tokenTableModel = new TokenTableModel(this);
     viewTokensTable.setModel(tokenTableModel);
 
     // Add token button
@@ -165,7 +164,7 @@ public class Main extends JFrame{
 
     // EVALUATE
 
-    EvaluateTableModel evaluateTableModel = new EvaluateTableModel();
+    EvaluateTableModel evaluateTableModel = new EvaluateTableModel(this);
     viewEvaluateTable.setModel(evaluateTableModel);
 
     // Start button logic
@@ -187,7 +186,7 @@ public class Main extends JFrame{
 
     // OVERVIEW
     String[] overviewColumnNames = getOverviewColumnNames();
-    OverviewTableModel overviewTableModel = new OverviewTableModel(overviewColumnNames);
+    OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
     viewOverviewTable.setModel(overviewTableModel);
 
     overviewTableRefreshButton.addActionListener(e -> {
@@ -200,49 +199,6 @@ public class Main extends JFrame{
 
   public static void main(String[] args) {
     new Main();
-  }
-
-  // custom table structure for tokens
-  class TokenTableModel extends DefaultTableModel {
-    public TokenTableModel() {
-      super(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
-    }
-    @Override
-    public boolean isCellEditable(int row, int column) {
-      return false;
-    }
-  }
-
-  // custom table structure for endpoints
-  class EndpointsTableModel extends DefaultTableModel {
-    public EndpointsTableModel() {
-      super(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
-    }
-    @Override
-    public boolean isCellEditable(int row, int column) {
-      return false;
-    }
-  }
-
-  class EvaluateTableModel extends DefaultTableModel {
-    public EvaluateTableModel() {
-      super(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
-    }
-    @Override
-    public boolean isCellEditable(int row, int column) {
-      return false;
-    }
-  }
-
-  class OverviewTableModel extends DefaultTableModel {
-    private String[] columnNames;
-    public OverviewTableModel(String[] columnNames) {
-      super(requestManager.toStringArray(), columnNames);
-    }
-    @Override
-    public boolean isCellEditable(int row, int column) {
-      return false;
-    }
   }
 
   public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
