@@ -87,6 +87,7 @@ public class Main extends JFrame{
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
 
+
     // ENDPOINTS
 
     // Example data - TODO: Remove
@@ -97,6 +98,7 @@ public class Main extends JFrame{
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
 
+    // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
     viewEndpointsTable.setModel(endpointsTableModel);
     addEndpointsBodyPanel.setVisible(false);
@@ -133,11 +135,13 @@ public class Main extends JFrame{
 
     // TOKENS
 
+    // Unauthenticated example token
     tokenManager.addToken(new Token("Unauthenticated", "", ""));
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));
 
+    // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
     viewTokensTable.setModel(tokenTableModel);
 
@@ -164,13 +168,14 @@ public class Main extends JFrame{
 
     // EVALUATE
 
+    // Initialise table
     EvaluateTableModel evaluateTableModel = new EvaluateTableModel(this);
     viewEvaluateTable.setModel(evaluateTableModel);
 
     // Start button logic
     evaluateButton.addActionListener(e -> {
       try {
-        evaluate(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
+        sendRequests(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
         System.out.println("done");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
@@ -184,11 +189,15 @@ public class Main extends JFrame{
       evaluateResponseText.setText(requestManager.getById(selectedId).getResponse().toString()); // TODO: get response body
     });
 
+
     // OVERVIEW
+
+    // Initialise table
     String[] overviewColumnNames = getOverviewColumnNames();
     OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
     viewOverviewTable.setModel(overviewTableModel);
 
+    // Refresh button logic
     overviewTableRefreshButton.addActionListener(e -> {
       requestManager.overviewToStringArray(endpointManager, tokenManager);
       overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
@@ -201,11 +210,14 @@ public class Main extends JFrame{
     new Main();
   }
 
-  public void evaluate(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
-                       EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
+  // Send requests to each endpoint with each token and collect responses
+  public void sendRequests(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
+                           EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
 
+    // clear request manager
     requestManager.clearList();
 
+    // create progress bar
     Integer totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
     Integer progress = 0;
     evaluateBar.setMaximum(totalEndpoints); // TODO: fix progress bar
@@ -221,13 +233,13 @@ public class Main extends JFrame{
         evaluateBar.setStringPainted(true);
       }
     }
-
     // for endpoint in endpoints
     // send request with different HTTP method
     // if not in endpoints
     // flag
   }
 
+  // Get column names for Overview table
   public String[] getOverviewColumnNames() {
     List<String> columnNames = new ArrayList<>();
     columnNames.add("URL");

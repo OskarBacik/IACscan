@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Created overview table">
-      <change afterPath="$PROJECT_DIR$/src/example/UI/EndpointsTableModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/UI/EvaluateTableModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/UI/OverviewTableModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/example/UI/TokenTableModel.java" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Extracted table models from main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +63,9 @@
       <recent name="C:\Users\home\IdeaProjects\BACscan\src\java\UI" />
       <recent name="C:\Users\home\IdeaProjects\BACscan\src\main" />
     </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="example.UI" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.example.UI.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -120,7 +120,7 @@
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
-      <workItem from="1709158759336" duration="6863000" />
+      <workItem from="1709158759336" duration="7341000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -164,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709165591435</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Extracted table models from main">
+      <created>1709165695050</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709165695050</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +195,8 @@
     <MESSAGE value="Added request functionality and basic display in evaluate" />
     <MESSAGE value="Added request and response detail windows to Evaluate panel" />
     <MESSAGE value="Created overview table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created overview table" />
+    <MESSAGE value="Extracted table models from main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extracted table models from main" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
