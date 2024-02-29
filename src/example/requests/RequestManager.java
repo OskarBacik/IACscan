@@ -60,21 +60,22 @@ public class RequestManager {
   }
 
   public String[][] overviewToStringArray(EndpointManager endpointManager, TokenManager tokenManager){
-    // initialise rows to number of endpoints and columns to URL + number of tokens
+    // initialise rows to number of endpoints and columns to ID + URL + a request for each token
     List<Endpoint> allEndpoints = endpointManager.getEndpoints();
     List<Token> allTokens = tokenManager.getTokenList();
-    String[][] result = new String[allEndpoints.size()][allTokens.size()+1];
+    String[][] result = new String[allEndpoints.size()][allTokens.size()+2];
 
     for(int i = 0; i < allEndpoints.size(); i++) {
       Endpoint currentEndpoint = allEndpoints.get(i); // current endpoint
 
       // first column = URL
-      result[i][0] = currentEndpoint.getUrl();
+      result[i][0] = String.valueOf(currentEndpoint.getId());
+      result[i][1] = currentEndpoint.getUrl();
 
       // remaining columns correspond to request made to endpoint with each token
       List<Request> currentEndpointRequests = getRequestsByEndpointId(currentEndpoint.getId());
       for(int j = 0; j < currentEndpointRequests.size(); j++) {
-        result[i][j+1] = String.valueOf(currentEndpointRequests.get(j).getResponse().code());
+        result[i][j+2] = String.valueOf(currentEndpointRequests.get(j).getResponse().code());
       }
     }
     return result;

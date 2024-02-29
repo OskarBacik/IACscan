@@ -455,7 +455,9 @@
                     <children>
                       <component id="674bf" class="javax.swing.JTextArea" binding="overviewResponseText">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <lineWrap value="true"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>

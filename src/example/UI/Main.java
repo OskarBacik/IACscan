@@ -183,7 +183,7 @@ public class Main extends JFrame{
       }
     });
 
-    // Display row selection in info panel
+    // Display row selection in evaluate info panel
     viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
       Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
       evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString()); // TODO: reformat
@@ -204,13 +204,22 @@ public class Main extends JFrame{
       requestManager.overviewToStringArray(endpointManager, tokenManager);
       overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
       overviewTableModel.fireTableDataChanged();
-      // refresh cell colour for all columns except 0
+      // refresh cell colour for all columns except ID and URL columns
       for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
-        if(columnIndex!=0) {
+        if(columnIndex>1) {
           viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer());
         }
       }
       viewOverviewTable.repaint();
+    });
+
+    // Display cell selection in overview info panel
+    viewOverviewTable.getSelectionModel().addListSelectionListener(e -> {
+      Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
+      Integer selectedColumn = viewOverviewTable.getSelectedColumn();
+      Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
+      overviewRequestText.setText(selectedRequest.getRequest().toString()); // TODO: reformat
+      overviewResponseText.setText(selectedRequest.getResponse().toString()); // TODO: get response body
     });
 
   }
@@ -252,6 +261,7 @@ public class Main extends JFrame{
   // Get column names for Overview table
   public String[] getOverviewColumnNames() {
     List<String> columnNames = new ArrayList<>();
+    columnNames.add("Endpoint ID");
     columnNames.add("URL");
     for(Token token: tokenManager.getTokenList()) {
       columnNames.add(token.getLabel());
@@ -265,9 +275,14 @@ public class Main extends JFrame{
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
       Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
+      Integer responseCode;
       // colour code each cell based on the response code TODO: add more response codes
       Object cell = table.getValueAt(row,column);
-      Integer responseCode = Integer.parseInt((String) cell);
+      try {
+        responseCode = Integer.parseInt((String) cell);
+      } catch (NumberFormatException exception) {
+        responseCode = 0;
+      }
       if (responseCode == 200) {
         cellComponent.setBackground(Color.GREEN);
       } else if (responseCode == 403) {

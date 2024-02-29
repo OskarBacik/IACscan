@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Formatting and comments">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added cell colours to overview table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +121,7 @@
       <workItem from="1708988658626" duration="14378000" />
       <workItem from="1709051418232" duration="3998000" />
       <workItem from="1709081330123" duration="9489000" />
-      <workItem from="1709158759336" duration="9092000" />
+      <workItem from="1709158759336" duration="9909000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -178,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709166169452</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added cell colours to overview table">
+      <created>1709167999002</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709167999002</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +212,8 @@
     <MESSAGE value="Created overview table" />
     <MESSAGE value="Extracted table models from main" />
     <MESSAGE value="Formatting and comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Formatting and comments" />
+    <MESSAGE value="Added cell colours to overview table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cell colours to overview table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
