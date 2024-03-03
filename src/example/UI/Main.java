@@ -183,12 +183,13 @@ public class Main extends JFrame{
 
     // Start button logic
     evaluateButton.addActionListener(e -> {
+      viewEvaluateTable.clearSelection();
+      viewOverviewTable.clearSelection();
       try {
-        sendRequests(requestManager, endpointManager, tokenManager, evaluateTableModel, evaluateBar);
+        sendRequests(requestManager, endpointManager, tokenManager, evaluateBar);
         evaluateTableModel.setDataVector(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
         evaluateTableModel.fireTableDataChanged();
-        newOverviewTable();
-        System.out.println("done");
+          newOverviewTable();
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -196,19 +197,20 @@ public class Main extends JFrame{
 
     // Display row selection in evaluate info panel
     viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
-      Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
-      Request selectedRequest = requestManager.getById(selectedId);
+      if (viewEvaluateTable.getSelectedRow() > -1) { // ignore if selected row is < 0
+        Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
+        Request selectedRequest = requestManager.getById(selectedId);
 
-      // custom request text
-      String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
-              "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
-      evaluateRequestText.setText(customRequestText);
+         // custom request text
+        String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
+                "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
+        evaluateRequestText.setText(customRequestText);
 
-      // custom response text
-      String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
-              "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
-      evaluateResponseText.setText(customResponseText);
-
+        // custom response text
+        String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
+                "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
+        evaluateResponseText.setText(customResponseText);
+      }
     });
 
 
@@ -224,6 +226,7 @@ public class Main extends JFrame{
       if (viewOverviewTable.getSelectedColumn() > 1) { // ignore selection of endpoint ID and URL columns
         Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
         Integer selectedColumn = viewOverviewTable.getSelectedColumn();
+
         Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
 
         // custom request text
@@ -235,10 +238,8 @@ public class Main extends JFrame{
         String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
                 "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
         overviewResponseText.setText(customResponseText);
-
       }
     });
-
   }
 
   public static void main(String[] args) {
@@ -247,7 +248,7 @@ public class Main extends JFrame{
 
   // Send requests to each endpoint with each token and collect responses
   public void sendRequests(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
-                           EvaluateTableModel evaluateTableModel, JProgressBar evaluateBar) throws IOException {
+                           JProgressBar evaluateBar) throws IOException {
 
     // clear request manager
     if(requestManager.getRequests().size() > 0) {
@@ -270,10 +271,6 @@ public class Main extends JFrame{
         evaluateBar.repaint();
       }
     }
-    // for endpoint in endpoints
-    // send request with different HTTP method
-    // if not in endpoints
-    // flag
   }
 
   // Get column names for Overview table

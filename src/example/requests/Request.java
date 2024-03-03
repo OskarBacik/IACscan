@@ -74,7 +74,12 @@ public class Request {
     this.request = request;
     Response response = client.newCall(request).execute();
     this.response = response;
-    this.responseBodyString = response.body().string(); // TODO: might be null
+    if (response.body() == null) {
+      this.responseBodyString = "";
+    }
+    else {
+      this.responseBodyString = response.body().string();
+    }
     response.close();
   }
 

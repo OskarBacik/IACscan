@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Testing and bug fixes">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added custom request and response formatting in info panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,7 @@
       <workItem from="1709158759336" duration="10785000" />
       <workItem from="1709185702235" duration="10015000" />
       <workItem from="1709236493777" duration="454000" />
-      <workItem from="1709486375868" duration="2164000" />
+      <workItem from="1709486375868" duration="4794000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -211,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709199217315</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added custom request and response formatting in info panel">
+      <created>1709488871669</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1709488871669</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +247,8 @@
     <MESSAGE value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Testing and bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing and bug fixes" />
+    <MESSAGE value="Added custom request and response formatting in info panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added custom request and response formatting in info panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
