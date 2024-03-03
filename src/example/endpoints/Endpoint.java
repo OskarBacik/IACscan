@@ -7,14 +7,13 @@ public class Endpoint {
 
   private static int idCounter = 0;
   private int id;
-
   private String url;
   private String method;
   private RequestBody body;
   private String bodyContent;
   private String contentType;
 
-  public Endpoint(String url, String method, String bodyContent, String contentType) {
+  public Endpoint(String url, String method, String bodyContent, String contentType) { // TODO: add headers
     this.id = createId();
     this.url = url;
     this.method = method;

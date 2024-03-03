@@ -16,6 +16,7 @@ public class Request {
   private Token token;
   private okhttp3.Request request;
   private Response response;
+  private String responseBodyString;
 
   public Request(Endpoint endpoint, Token token) throws IOException {
 
@@ -73,6 +74,7 @@ public class Request {
     this.request = request;
     Response response = client.newCall(request).execute();
     this.response = response;
+    this.responseBodyString = response.body().string(); // TODO: might be null
     response.close();
   }
 
@@ -102,5 +104,9 @@ public class Request {
 
   public Response getResponse() {
     return response;
+  }
+
+  public String getResponseBodyString() {
+    return responseBodyString;
   }
 }

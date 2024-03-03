@@ -199,26 +199,16 @@ public class Main extends JFrame{
       Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
       Request selectedRequest = requestManager.getById(selectedId);
 
-      /*
-      // custom request formatting
-      String customRequest = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() + selectedRequest.getRequest().headers() + selectedRequest.getEndpoint().getBodyContent();
-      System.out.println(customRequest);
-       */
+      // custom request text
+      String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
+              "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
+      evaluateRequestText.setText(customRequestText);
 
-      // original formatting
-      evaluateRequestText.setText(requestManager.getById(selectedId).getRequest().toString()); // TODO: reformat
-      evaluateResponseText.setText(requestManager.getById(selectedId).getResponse().toString()); // TODO: get response body
+      // custom response text
+      String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
+              "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
+      evaluateResponseText.setText(customResponseText);
 
-      /* custom response formatting
-      String jsonData = null;
-      try {
-        jsonData = requestManager.getById(selectedId).getResponse().body().string();
-      } catch (IOException ignore) {
-        ;
-      }
-      JSONObject jsonResponse = new JSONObject(jsonData);
-      System.out.println(jsonResponse.toString());
-      */
     });
 
 
@@ -231,13 +221,22 @@ public class Main extends JFrame{
 
     // Display cell selection in overview info panel
     viewOverviewTable.getSelectionModel().addListSelectionListener(e -> {
-      Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
-      Integer selectedColumn = viewOverviewTable.getSelectedColumn();
-      Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
-      overviewRequestText.setText(selectedRequest.getRequest().toString()); // TODO: reformat
-      overviewResponseText.setText(selectedRequest.getResponse().toString()); // TODO: get response body
-      System.out.println(selectedRequest.getResponse().body().toString());
-      System.out.println(selectedRequest.getResponse().headers());
+      if (viewOverviewTable.getSelectedColumn() > 1) { // ignore selection of endpoint ID and URL columns
+        Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
+        Integer selectedColumn = viewOverviewTable.getSelectedColumn();
+        Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
+
+        // custom request text
+        String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
+                "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
+        overviewRequestText.setText(customRequestText);
+
+        // custom response text
+        String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
+                "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
+        overviewResponseText.setText(customResponseText);
+
+      }
     });
 
   }
