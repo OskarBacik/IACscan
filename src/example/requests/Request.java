@@ -123,12 +123,12 @@ public class Request {
   }
 
   public String getCustomRequestText() {
-    return this.getRequest().method() + "    " + this.getRequest().url() +
-            "\n" + this.getRequest().headers() + "\n" + this.getEndpoint().getBodyContent();
+    return request.method() + " " + request.url() +
+            "\n" + request.headers() + "\n" + this.getEndpoint().getBodyContent();
   }
 
   public String getCustomResponseText() {
-    return this.getResponse().protocol() + " " + this.getResponse().code() +
-            "\n" + this.getResponse().headers().toString() + "\n\n" + this.getResponseBodyString();
+    return response.protocol().name() + " " + response.code() + " " + response.message() +
+            "\n" + response.headers().toString() + "\n\n" + this.getResponseBodyString();
   }
 }
