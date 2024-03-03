@@ -44,6 +44,7 @@ public class Request {
                 .url(endpoint.getUrl())
                 .method(endpoint.getMethod(), endpoint.getBody())
                 .addHeader("accept", "application/json")
+                .addHeader("Content-Type", endpoint.getContentType())
                 .build();
       }
     }
@@ -64,8 +65,9 @@ public class Request {
         request = new okhttp3.Request.Builder()
                 .url(endpoint.getUrl())
                 .method(endpoint.getMethod(), endpoint.getBody())
-                .addHeader("accept", "application/json")
                 .addHeader(token.getHeaderName(), token.getValue())
+                .addHeader("accept", "application/json")
+                .addHeader("Content-Type", endpoint.getContentType())
                 .build();
       }
     }
@@ -73,6 +75,10 @@ public class Request {
 
     this.request = request;
     Response response = client.newCall(request).execute();
+
+    // TODO: unsuccessful request management
+
+    // set body variable
     this.response = response;
     if (response.body() == null) {
       this.responseBodyString = "";
@@ -80,6 +86,7 @@ public class Request {
     else {
       this.responseBodyString = response.body().string();
     }
+
     response.close();
   }
 
@@ -113,5 +120,15 @@ public class Request {
 
   public String getResponseBodyString() {
     return responseBodyString;
+  }
+
+  public String getCustomRequestText() {
+    return this.getRequest().method() + "    " + this.getRequest().url() +
+            "\n" + this.getRequest().headers() + "\n" + this.getEndpoint().getBodyContent();
+  }
+
+  public String getCustomResponseText() {
+    return this.getResponse().protocol() + " " + this.getResponse().code() +
+            "\n" + this.getResponse().headers().toString() + "\n\n" + this.getResponseBodyString();
   }
 }

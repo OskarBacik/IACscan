@@ -107,11 +107,7 @@ public class Main extends JFrame{
     // hide body panel if method is GET or DELETE
     addEndpointsMethod.addActionListener(e -> {
       String selectedMethod = (String) addEndpointsMethod.getSelectedItem();
-      if ("GET".equals(selectedMethod) || "DELETE".equals(selectedMethod)) {
-        addEndpointsBodyPanel.setVisible(false);
-      } else {
-        addEndpointsBodyPanel.setVisible(true);
-      }
+      addEndpointsBodyPanel.setVisible(!"GET".equals(selectedMethod) && !"DELETE".equals(selectedMethod));
     });
 
     // Add endpoint button
@@ -192,18 +188,12 @@ public class Main extends JFrame{
     // Display row selection in evaluate info panel
     viewEvaluateTable.getSelectionModel().addListSelectionListener(e -> {
       if (viewEvaluateTable.getSelectedRow() > -1) { // ignore if selected row is < 0
-        Integer selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
+        int selectedId = Integer.parseInt((String) viewEvaluateTable.getValueAt(viewEvaluateTable.getSelectedRow(), 0));
         Request selectedRequest = requestManager.getById(selectedId);
 
-         // custom request text
-        String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
-                "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
-        evaluateRequestText.setText(customRequestText);
-
-        // custom response text
-        String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
-                "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
-        evaluateResponseText.setText(customResponseText);
+        // display custom request formatting in info panel
+        evaluateRequestText.setText(selectedRequest.getCustomRequestText());
+        evaluateResponseText.setText(selectedRequest.getCustomResponseText());
       }
     });
 
@@ -219,19 +209,12 @@ public class Main extends JFrame{
     viewOverviewTable.getSelectionModel().addListSelectionListener(e -> {
       if (viewOverviewTable.getSelectedColumn() > 1) { // ignore selection of endpoint ID and URL columns
         Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
-        Integer selectedColumn = viewOverviewTable.getSelectedColumn();
-
+        int selectedColumn = viewOverviewTable.getSelectedColumn();
         Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
 
-        // custom request text
-        String customRequestText = selectedRequest.getRequest().method() + "    " + selectedRequest.getRequest().url() +
-                "\n" + selectedRequest.getRequest().headers() + "\n" + selectedRequest.getEndpoint().getBodyContent();
-        overviewRequestText.setText(customRequestText);
-
-        // custom response text
-        String customResponseText = selectedRequest.getResponse().protocol() + " " + selectedRequest.getResponse().code() +
-                "\n" + selectedRequest.getResponse().headers().toString() + "\n\n" + selectedRequest.getResponseBodyString();
-        overviewResponseText.setText(customResponseText);
+        // display custom request formatting in info panel
+        overviewRequestText.setText(selectedRequest.getCustomRequestText());
+        overviewResponseText.setText(selectedRequest.getCustomResponseText());
       }
     });
   }
@@ -251,8 +234,8 @@ public class Main extends JFrame{
     }
 
     // create progress bar
-    Integer totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
-    Integer progress = 0;
+    int totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
+    int progress = 0;
     evaluateBar.setMaximum(totalEndpoints); // TODO: fix progress bar
 
     // send a request to each endpoint with each token

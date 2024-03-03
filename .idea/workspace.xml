@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Bug fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Moved custom renderer class out of main">
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
@@ -124,7 +123,7 @@
       <workItem from="1709158759336" duration="10785000" />
       <workItem from="1709185702235" duration="10015000" />
       <workItem from="1709236493777" duration="454000" />
-      <workItem from="1709486375868" duration="6469000" />
+      <workItem from="1709486375868" duration="7028000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -224,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709491265188</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Moved custom renderer class out of main">
+      <created>1709496142590</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709496142590</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +261,8 @@
     <MESSAGE value="Testing and bug fixes" />
     <MESSAGE value="Added custom request and response formatting in info panel" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="Moved custom renderer class out of main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved custom renderer class out of main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
