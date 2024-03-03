@@ -425,6 +425,7 @@
                       <component id="7e317" class="javax.swing.JTextArea" binding="overviewRequestText">
                         <constraints/>
                         <properties>
+                          <editable value="false"/>
                           <lineWrap value="true"/>
                         </properties>
                       </component>
@@ -448,6 +449,7 @@
                       <component id="674bf" class="javax.swing.JTextArea" binding="overviewResponseText">
                         <constraints/>
                         <properties>
+                          <editable value="false"/>
                           <lineWrap value="true"/>
                         </properties>
                       </component>
