@@ -8,8 +8,11 @@ import java.util.List;
 public class EndpointManager {
   private List<Endpoint> endpoints;
 
+  private List<Endpoint> detectionEndpoints;
+
   public EndpointManager() {
     this.endpoints = new ArrayList<>();
+    this.detectionEndpoints = new ArrayList<>();
   }
 
   public List<Endpoint> getEndpoints() {
@@ -19,6 +22,15 @@ public class EndpointManager {
   public void addEndpoint(Endpoint endpoint) {
     endpoints.add(endpoint);
   }
+
+  public List<Endpoint> getDetectionEndpoints() {
+    return detectionEndpoints;
+  }
+
+  public void addDetectionEndpoint(Endpoint endpoint) {
+    detectionEndpoints.add(endpoint);
+  }
+
 
   public String[][] toStringArray() {
     String[][] result = new String[endpoints.size()][4];

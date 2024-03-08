@@ -6,15 +6,17 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RequestManager {
 
   private List<Request> requests;
 
+  private List<Request> detectionRequests;
+
   public RequestManager(){
     this.requests = new ArrayList<>();
+    this.detectionRequests = new ArrayList<>();
   }
 
   public List<Request> getRequests() {
@@ -29,15 +31,44 @@ public class RequestManager {
     this.requests = new ArrayList<>();
   }
 
-  public String[][] toStringArray() {
-    String[][] result = new String[requests.size()][4];
+  public List<Request> getDetectionRequests() {
+    return detectionRequests;
+  }
+
+  public void addDetectionRequest(Request request) {
+    detectionRequests.add(request);
+  }
+
+  public void clearDetectionList() {
+    this.detectionRequests = new ArrayList<>();
+  }
+
+
+  public String[][] toStringArrayEvaluate() {
+    String[][] result = new String[requests.size()][5];
 
     for (int i = 0; i < requests.size(); i++) {
       Request request = requests.get(i);
       result[i][0] = String.valueOf(request.getId());
-      result[i][1] = String.valueOf(request.getEndpoint().getUrl());
-      result[i][2] = request.getToken().getLabel();
-      result[i][3] = String.valueOf(request.getResponse().code());
+      result[i][1] = request.getEndpoint().getMethod();
+      result[i][2] = String.valueOf(request.getEndpoint().getUrl());
+      result[i][3] = request.getToken().getLabel();
+      result[i][4] = String.valueOf(request.getResponse().code());
+    }
+
+    return result;
+  }
+
+  public String[][] toStringArrayDetection() {
+    String[][] result = new String[detectionRequests.size()][5];
+
+    for (int i = 0; i < detectionRequests.size(); i++) {
+      Request request = detectionRequests.get(i);
+      result[i][0] = String.valueOf(request.getId());
+      result[i][1] = request.getEndpoint().getMethod();
+      result[i][2] = String.valueOf(request.getEndpoint().getUrl());
+      result[i][3] = request.getToken().getLabel();
+      result[i][4] = String.valueOf(request.getResponse().code());
     }
 
     return result;
@@ -59,7 +90,7 @@ public class RequestManager {
     return requestsList;
   }
 
-  public String[][] overviewToStringArray(EndpointManager endpointManager, TokenManager tokenManager){
+  public String[][] toStringArrayOverview(EndpointManager endpointManager, TokenManager tokenManager){
     // initialise rows to number of endpoints and columns to ID + URL + a request for each token
     List<Endpoint> allEndpoints = endpointManager.getEndpoints();
     List<Token> allTokens = tokenManager.getTokenList();

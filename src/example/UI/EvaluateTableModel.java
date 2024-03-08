@@ -6,7 +6,7 @@ class EvaluateTableModel extends DefaultTableModel {
   private final Main main;
 
   public EvaluateTableModel(Main main) {
-    super(main.requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
+    super(main.requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
     this.main = main;
   }
 

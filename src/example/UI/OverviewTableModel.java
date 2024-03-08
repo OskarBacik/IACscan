@@ -7,7 +7,7 @@ class OverviewTableModel extends DefaultTableModel {
   private String[] columnNames;
 
   public OverviewTableModel(Main main, String[] columnNames) {
-    super(main.requestManager.toStringArray(), columnNames);
+    super(main.requestManager.toStringArrayEvaluate(), columnNames);
     this.main = main;
   }
 

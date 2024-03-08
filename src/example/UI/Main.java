@@ -8,9 +8,12 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
@@ -68,6 +71,22 @@ public class Main extends JFrame{
   private JTextArea overviewRequestText;
   private JTextArea overviewResponseText;
   private JLabel OverviewLabel;
+  private JPanel DetectionPanel;
+  private JButton detectionStartButton;
+  private JScrollPane ViewDetectionPanel;
+  private JTable viewDetectionTable;
+  private JButton detectionAddButton;
+  private JTextArea addEndpointsHeaders;
+  private JLabel addEndpointsLabel3;
+  private JTabbedPane AddEndpointsTabs;
+  private JPanel AddEndpointsCurlPanel;
+  private JLabel addEndpointsCurlLabel;
+  private JTextArea addEndpointsCurlText;
+  private JButton addEndpointsCurlButton;
+  private JScrollPane addEndpointsCurlScroll;
+  private JComboBox detectionTokenBox;
+  private JLabel detectionTokenLabel;
+  private JButton detectionTokenRefresh;
 
   public Main() {
 
@@ -110,7 +129,7 @@ public class Main extends JFrame{
       addEndpointsBodyPanel.setVisible(!"GET".equals(selectedMethod) && !"DELETE".equals(selectedMethod));
     });
 
-    // Add endpoint button
+    // Add endpoint button TODO: add headers
     addEndpointsButton.addActionListener(e -> {
       Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
               addEndpointsPost.getText(), addEndpointsContentType.getText());
@@ -118,6 +137,11 @@ public class Main extends JFrame{
       addEndpointsUrl.setText("");
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
+    });
+
+    // Add endpoint curl button
+    addEndpointsCurlButton.addActionListener(e -> {
+      String curlCommand = addEndpointsCurlText.getText(); // TODO: Finish
     });
 
     // Delete endpoint button
@@ -177,7 +201,7 @@ public class Main extends JFrame{
       viewOverviewTable.clearSelection();
       try {
         sendRequests(requestManager, endpointManager, tokenManager, evaluateBar);
-        evaluateTableModel.setDataVector(requestManager.toStringArray(), new String[]{"ID", "URL", "Token", "Response code"});
+        evaluateTableModel.setDataVector(requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
         evaluateTableModel.fireTableDataChanged();
           newOverviewTable();
       } catch (IOException ex) {
@@ -217,6 +241,40 @@ public class Main extends JFrame{
         overviewResponseText.setText(selectedRequest.getCustomResponseText());
       }
     });
+
+
+    // DETECTION
+
+    // reusing evaluate table model due to same layout
+    EvaluateTableModel detectionTableModel = new EvaluateTableModel(this);
+    viewDetectionTable.setModel(detectionTableModel);
+
+    // add tokens to token selection box
+    detectionTokenRefresh.addActionListener(e -> {
+      detectionTokenBox.removeAllItems();
+      for(Token token: tokenManager.getTokenList()) {
+        detectionTokenBox.addItem(token.getLabel());
+      }
+    });
+
+    // start TODO: add colour renderer to 404 and 405
+    detectionStartButton.addActionListener(e -> {
+      try {
+        detectMethods();
+        detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
+        detectionTableModel.fireTableDataChanged();
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    // add endpoint TODO: finish
+    detectionAddButton.addActionListener(e -> {
+      int selectedDetectionId = (int) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(),0);
+    });
+
+    AddEndpointsPanel.addComponentListener(new ComponentAdapter() {
+    });
   }
 
   public static void main(String[] args) {
@@ -250,6 +308,40 @@ public class Main extends JFrame{
     }
   }
 
+  // Send requests to each endpoint with new HTTP methods
+  public void detectMethods() throws IOException {
+    List<Endpoint> endpointList = endpointManager.getEndpoints();
+    List<String> methods = Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
+
+    // check if token is selected, return if none selected
+    if(detectionTokenBox.getSelectedIndex() == -1) {
+      return;
+    }
+    Token selectedToken = tokenManager.getTokenList().get(detectionTokenBox.getSelectedIndex());
+
+    // clear detection manager
+    if(requestManager.getDetectionRequests().size() > 0){
+      requestManager.clearDetectionList();
+    }
+
+    // check for the existence of new methods for each endpoint
+    for(Endpoint endpoint: endpointManager.getEndpoints()) {
+      for(String method: methods){
+
+        // ignore if method is the same as specified in Endpoint object
+        if(!Objects.equals(endpoint.getMethod(), method)) {
+
+          // create a new detection endpoint with different method
+          Endpoint newEndpoint = new Endpoint(endpoint.getUrl(), method, endpoint.getBodyContent(), endpoint.getContentType());
+          endpointManager.addDetectionEndpoint(newEndpoint);
+
+          // create and send request
+          requestManager.addDetectionRequest(new Request(newEndpoint, selectedToken));
+        }
+      }
+    }
+  }
+
   // Get column names for Overview table
   public String[] getOverviewColumnNames() {
     List<String> columnNames = new ArrayList<>();
@@ -267,7 +359,7 @@ public class Main extends JFrame{
     OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
     viewOverviewTable.setModel(overviewTableModel);
     // refresh table content
-    overviewTableModel.setDataVector(requestManager.overviewToStringArray(endpointManager, tokenManager), getOverviewColumnNames());
+    overviewTableModel.setDataVector(requestManager.toStringArrayOverview(endpointManager, tokenManager), getOverviewColumnNames());
     overviewTableModel.fireTableDataChanged();
     // refresh cell colour for all columns except ID and URL columns
     for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
@@ -278,7 +370,5 @@ public class Main extends JFrame{
     viewOverviewTable.repaint();
   }
 
-  public void testMethods() {
-    // get all urls from endpoints
-  }
+
 }
