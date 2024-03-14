@@ -1,8 +1,10 @@
-package example.UI;
+package example.UI.tables;
+
+import example.UI.Main;
 
 import javax.swing.table.DefaultTableModel;
 
-class OverviewTableModel extends DefaultTableModel {
+public class OverviewTableModel extends DefaultTableModel {
   private final Main main;
   private String[] columnNames;
 

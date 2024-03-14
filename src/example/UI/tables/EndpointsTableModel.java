@@ -1,9 +1,11 @@
-package example.UI;
+package example.UI.tables;
+
+import example.UI.Main;
 
 import javax.swing.table.DefaultTableModel;
 
 // custom table structure for endpoints
-class EndpointsTableModel extends DefaultTableModel {
+public class EndpointsTableModel extends DefaultTableModel {
   private final Main main;
 
   public EndpointsTableModel(Main main) {

@@ -1,8 +1,10 @@
-package example.UI;
+package example.UI.tables;
+
+import example.UI.Main;
 
 import javax.swing.table.DefaultTableModel;
 
-class EvaluateTableModel extends DefaultTableModel {
+public class EvaluateTableModel extends DefaultTableModel {
   private final Main main;
 
   public EvaluateTableModel(Main main) {

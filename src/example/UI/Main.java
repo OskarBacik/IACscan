@@ -1,5 +1,9 @@
 package example.UI;
 
+import example.UI.tables.EndpointsTableModel;
+import example.UI.tables.EvaluateTableModel;
+import example.UI.tables.OverviewTableModel;
+import example.UI.tables.TokenTableModel;
 import example.endpoints.Endpoint;
 import example.endpoints.EndpointManager;
 import example.requests.Request;
@@ -17,9 +21,9 @@ import java.util.Objects;
 
 public class Main extends JFrame{
   private JPanel MainPanel;
-  EndpointManager endpointManager;
-  TokenManager tokenManager;
-  RequestManager requestManager;
+  public EndpointManager endpointManager;
+  public TokenManager tokenManager;
+  public RequestManager requestManager;
   private JTabbedPane MainTabbedPane;
   private JPanel EndpointsPanel;
   private JPanel TokensPanel;
@@ -175,16 +179,14 @@ public class Main extends JFrame{
       addTokensName.setText("");
       addTokensHeader.setText("");
       addTokensToken.setText("");
-      tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
-      tokenTableModel.fireTableDataChanged();
+      refreshTokenTable(tokenTableModel);
     });
 
     // Delete token button
     deleteTokenButton.addActionListener(e -> {
       if(viewTokensTable.getSelectedRow() != -1) { // no row selected = error
         tokenManager.deleteById(Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(),0)));
-        tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
-        tokenTableModel.fireTableDataChanged();
+        refreshTokenTable(tokenTableModel);
       }
     });
 
@@ -201,9 +203,8 @@ public class Main extends JFrame{
       viewOverviewTable.clearSelection();
       try {
         sendRequests(requestManager, endpointManager, tokenManager, evaluateBar);
-        evaluateTableModel.setDataVector(requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
-        evaluateTableModel.fireTableDataChanged();
-          newOverviewTable();
+        refreshEvaluateTable(evaluateTableModel);
+        refreshOverviewTable();
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -261,9 +262,7 @@ public class Main extends JFrame{
     detectionStartButton.addActionListener(e -> {
       try {
         detectMethods();
-        detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
-        detectionTableModel.fireTableDataChanged();
-        refreshDetectionTable();
+        refreshDetectionTable(detectionTableModel);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -280,8 +279,7 @@ public class Main extends JFrame{
       // refresh tables
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
-      detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
-      detectionTableModel.fireTableDataChanged();
+      refreshDetectionTable(detectionTableModel);
     });
 
     AddEndpointsPanel.addComponentListener(new ComponentAdapter() {
@@ -365,7 +363,7 @@ public class Main extends JFrame{
   }
 
   // Create or refresh table with new possible rows/columns
-  public void newOverviewTable() {
+  public void refreshOverviewTable() {
     String[] overviewColumnNames = getOverviewColumnNames();
     OverviewTableModel overviewTableModel = new OverviewTableModel(this, overviewColumnNames);
     viewOverviewTable.setModel(overviewTableModel);
@@ -381,8 +379,10 @@ public class Main extends JFrame{
     viewOverviewTable.repaint();
   }
 
-  public void refreshDetectionTable() {
-
+  public void refreshDetectionTable(EvaluateTableModel detectionTableModel) {
+    // refresh table
+    detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
+    detectionTableModel.fireTableDataChanged();
     // set cell colour for response code column
     for(int columnIndex = 0; columnIndex < viewDetectionTable.getColumnCount(); columnIndex++) {
       if(columnIndex>3) {
@@ -390,6 +390,16 @@ public class Main extends JFrame{
       }
     }
     viewDetectionTable.repaint();
+  }
+
+  public void refreshTokenTable(TokenTableModel tokenTableModel) {
+    tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
+    tokenTableModel.fireTableDataChanged();
+  }
+
+  public void refreshEvaluateTable(EvaluateTableModel evaluateTableModel) {
+    evaluateTableModel.setDataVector(requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
+    evaluateTableModel.fireTableDataChanged();
   }
 
 

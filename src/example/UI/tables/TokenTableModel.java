@@ -1,9 +1,11 @@
-package example.UI;
+package example.UI.tables;
+
+import example.UI.Main;
 
 import javax.swing.table.DefaultTableModel;
 
 // custom table structure for tokens
-class TokenTableModel extends DefaultTableModel {
+public class TokenTableModel extends DefaultTableModel {
   private final Main main;
 
   public TokenTableModel(Main main) {
