@@ -257,12 +257,13 @@ public class Main extends JFrame{
       }
     });
 
-    // start TODO: add colour renderer to 404 and 405
+    // start
     detectionStartButton.addActionListener(e -> {
       try {
         detectMethods();
         detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
         detectionTableModel.fireTableDataChanged();
+        refreshDetectionTable();
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -378,6 +379,17 @@ public class Main extends JFrame{
       }
     }
     viewOverviewTable.repaint();
+  }
+
+  public void refreshDetectionTable() {
+
+    // set cell colour for response code column
+    for(int columnIndex = 0; columnIndex < viewDetectionTable.getColumnCount(); columnIndex++) {
+      if(columnIndex>3) {
+        viewDetectionTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new DetectionTableColourRenderer());
+      }
+    }
+    viewDetectionTable.repaint();
   }
 
 
