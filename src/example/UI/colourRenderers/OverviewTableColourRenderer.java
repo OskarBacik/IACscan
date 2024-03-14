@@ -1,4 +1,4 @@
-package example.UI;
+package example.UI.colourRenderers;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // Custom colour renderer for Overview Table
-class OverviewTableColourRenderer extends DefaultTableCellRenderer {
+public class OverviewTableColourRenderer extends DefaultTableCellRenderer {
   @Override
   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
     Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

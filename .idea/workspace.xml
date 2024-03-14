@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page">
-      <change afterPath="$PROJECT_DIR$/src/example/UI/DetectionTableColourRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added colour renderer to detection table">
+      <change beforePath="$PROJECT_DIR$/src/example/UI/EndpointsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/EndpointsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/EvaluateTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/EvaluateTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/OverviewTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/OverviewTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/TokenTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/TokenTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +83,7 @@
       <module name="BACscan" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="example.UI.*" />
+          <option name="PATTERN" value="example.UI.tableModels.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,7 +131,7 @@
       <workItem from="1709830018001" duration="10430000" />
       <workItem from="1710350392579" duration="39000" />
       <workItem from="1710376619559" duration="2707000" />
-      <workItem from="1710379567603" duration="1047000" />
+      <workItem from="1710379567603" duration="1824000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -278,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710378946425</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added colour renderer to detection table">
+      <created>1710423858826</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1710423858826</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +325,8 @@
     <MESSAGE value="Added message to response" />
     <MESSAGE value="Added endpoint detection functionality" />
     <MESSAGE value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
+    <MESSAGE value="Added colour renderer to detection table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added colour renderer to detection table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

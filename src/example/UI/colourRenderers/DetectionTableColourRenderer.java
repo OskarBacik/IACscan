@@ -1,4 +1,4 @@
-package example.UI;
+package example.UI.colourRenderers;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

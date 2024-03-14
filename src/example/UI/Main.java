@@ -1,9 +1,11 @@
 package example.UI;
 
-import example.UI.tables.EndpointsTableModel;
-import example.UI.tables.EvaluateTableModel;
-import example.UI.tables.OverviewTableModel;
-import example.UI.tables.TokenTableModel;
+import example.UI.colourRenderers.DetectionTableColourRenderer;
+import example.UI.colourRenderers.OverviewTableColourRenderer;
+import example.UI.tableModels.EndpointsTableModel;
+import example.UI.tableModels.EvaluateTableModel;
+import example.UI.tableModels.OverviewTableModel;
+import example.UI.tableModels.TokenTableModel;
 import example.endpoints.Endpoint;
 import example.endpoints.EndpointManager;
 import example.requests.Request;

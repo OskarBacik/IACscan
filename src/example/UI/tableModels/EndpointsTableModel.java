@@ -1,4 +1,4 @@
-package example.UI.tables;
+package example.UI.tableModels;
 
 import example.UI.Main;
 
