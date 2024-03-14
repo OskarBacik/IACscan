@@ -1,7 +1,5 @@
 package example.endpoints;
 
-import example.tokens.Token;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,15 @@ public class EndpointManager {
 
   public List<Endpoint> getDetectionEndpoints() {
     return detectionEndpoints;
+  }
+  public Endpoint getDetectionById(int id) {
+    List<Endpoint> endpointList = getDetectionEndpoints();
+    for(Endpoint endpoint: endpointList) {
+      if(endpoint.getId() == id) {
+        return endpoint;
+      }
+    }
+    return null;
   }
 
   public void addDetectionEndpoint(Endpoint endpoint) {
@@ -50,6 +57,17 @@ public class EndpointManager {
     for (Endpoint endpoint : endpoints) {
       if (endpoint.getId() == id) {
         endpoints.remove(endpoint);
+        return;
+      }
+    }
+  }
+
+  // Delete endpoint from detectionEndpoints and add to endpoints
+  public void moveDetectionToMain(int id){
+    for (Endpoint endpoint : detectionEndpoints) {
+      if (endpoint.getId() == id) {
+        detectionEndpoints.remove(endpoint);
+        endpoints.add(endpoint);
         return;
       }
     }

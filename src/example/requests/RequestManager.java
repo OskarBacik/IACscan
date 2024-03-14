@@ -111,4 +111,14 @@ public class RequestManager {
     }
     return result;
   }
+
+  public Request getDetectionById(int id) {
+    List<Request> requestList = getDetectionRequests();
+    for(Request request: requestList) {
+      if(request.getId() == id) {
+        return request;
+      }
+    }
+    return null;
+  }
 }

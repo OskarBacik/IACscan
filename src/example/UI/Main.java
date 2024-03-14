@@ -268,9 +268,19 @@ public class Main extends JFrame{
       }
     });
 
-    // add endpoint TODO: finish
+    // add endpoint
     detectionAddButton.addActionListener(e -> {
-      int selectedDetectionId = (int) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(),0);
+      // get endpoint and move to endpoints list
+      int selectedDetectionId = Integer.parseInt((String) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(),0));
+      Request selectedRequest = requestManager.getDetectionById(selectedDetectionId);
+      if(selectedRequest != null) {
+        endpointManager.moveDetectionToMain(selectedRequest.getEndpoint().getId());
+      }
+      // refresh tables
+      endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+      endpointsTableModel.fireTableDataChanged();
+      detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
+      detectionTableModel.fireTableDataChanged();
     });
 
     AddEndpointsPanel.addComponentListener(new ComponentAdapter() {
