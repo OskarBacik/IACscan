@@ -22,6 +22,14 @@ public class Endpoint {
     this.body = RequestBody.create(bodyContent, MediaType.parse(contentType));
   }
 
+  public void editEndpoint(String url, String method, String bodyContent, String contentType) {
+    this.url = url;
+    this.method = method;
+    this.bodyContent = bodyContent;
+    this.contentType = contentType;
+    this.body = RequestBody.create(bodyContent, MediaType.parse(contentType));
+  }
+
   private synchronized int createId() {
     return ++idCounter;
   }

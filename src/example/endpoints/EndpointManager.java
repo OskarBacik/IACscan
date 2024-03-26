@@ -24,6 +24,17 @@ public class EndpointManager {
   public List<Endpoint> getDetectionEndpoints() {
     return detectionEndpoints;
   }
+
+  public Endpoint getEndpointById(int id) {
+    List<Endpoint> endpointList = getEndpoints();
+    for(Endpoint endpoint: endpointList) {
+      if(endpoint.getId() == id) {
+        return endpoint;
+      }
+    }
+    return null;
+  }
+
   public Endpoint getDetectionById(int id) {
     List<Endpoint> endpointList = getDetectionEndpoints();
     for(Endpoint endpoint: endpointList) {

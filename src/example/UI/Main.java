@@ -15,6 +15,8 @@ import example.tokens.TokenManager;
 
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,6 +95,7 @@ public class Main extends JFrame{
   private JComboBox detectionTokenBox;
   private JLabel detectionTokenLabel;
   private JButton detectionTokenRefresh;
+  private JButton addEndpointsEditButton;
 
   public Main() {
 
@@ -159,6 +162,48 @@ public class Main extends JFrame{
         endpointsTableModel.fireTableDataChanged();
       }
     });
+
+    // view selected endpoint
+    viewEndpointsTable.getSelectionModel().addListSelectionListener(e -> {
+      // ignore if not selected
+      if (viewEndpointsTable.getSelectedRow() > -1){
+
+        int selectedEndpointId = Integer.parseInt((String) viewEndpointsTable.getValueAt(viewEndpointsTable.getSelectedRow(),0));
+        Endpoint selectedEndpoint = endpointManager.getEndpointById(selectedEndpointId);
+
+        // get method from selected endpoint
+        List<String> methodsList = Arrays.asList("GET","POST","PUT","PATCH","DELETE","OPTIONS");
+        for (int i = 0 ; i < methodsList.size(); i++){
+          if(Objects.equals(selectedEndpoint.getMethod(), methodsList.get(i))) {
+            addEndpointsMethod.setSelectedIndex(i);
+            System.out.println("success");
+          }
+        }
+
+        // get remaining fields
+        // TODO: add headers
+        addEndpointsUrl.setText(selectedEndpoint.getUrl());
+        addEndpointsPost.setText(selectedEndpoint.getBodyContent());
+        addEndpointsContentType.setText(selectedEndpoint.getContentType());
+      }
+    });
+
+    // edit endpoint TODO: add headers
+    addEndpointsEditButton.addActionListener(e -> {
+      if (viewEndpointsTable.getSelectedRow() > -1) { // if endpoint is selected
+        // get selected endpoint
+        int selectedEndpointId = Integer.parseInt((String) viewEndpointsTable.getValueAt(viewEndpointsTable.getSelectedRow(), 0));
+        Endpoint selectedEndpoint = endpointManager.getEndpointById(selectedEndpointId);
+        // overwrite contents
+        selectedEndpoint.editEndpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
+                addEndpointsPost.getText(), addEndpointsContentType.getText());
+        // update table
+        endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+        endpointsTableModel.fireTableDataChanged();
+      }
+    });
+
+
 
 
     // TOKENS

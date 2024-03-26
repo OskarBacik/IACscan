@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="705" height="836"/>
+      <xy x="20" y="20" width="738" height="836"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -158,6 +158,14 @@
                         </constraints>
                         <properties>
                           <text value="HTTP Headers:"/>
+                        </properties>
+                      </component>
+                      <component id="10ba9" class="javax.swing.JButton" binding="addEndpointsEditButton">
+                        <constraints>
+                          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Edit/Overwrite"/>
                         </properties>
                       </component>
                     </children>
