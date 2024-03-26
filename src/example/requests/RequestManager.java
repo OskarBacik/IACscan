@@ -75,7 +75,14 @@ public class RequestManager {
   }
 
   public Request getById(int id) {
-    return requests.get(id-1);
+
+    List<Request> requestList = requests;
+    for(Request request: requestList) {
+      if(request.getId() == id) {
+        return request;
+      }
+    }
+    return null;
   }
 
   // Get all requests for a certain endpoint

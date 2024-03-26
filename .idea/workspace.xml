@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added colour renderer to detection table">
-      <change beforePath="$PROJECT_DIR$/src/example/UI/EndpointsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/EndpointsTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/EvaluateTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/EvaluateTableModel.java" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="package refactoring">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/OverviewTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/OverviewTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/TokenTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tables/TokenTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/DetectionTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/DetectionTableColourRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,11 @@
       <workItem from="1709830018001" duration="10430000" />
       <workItem from="1710350392579" duration="39000" />
       <workItem from="1710376619559" duration="2707000" />
-      <workItem from="1710379567603" duration="1824000" />
+      <workItem from="1710379567603" duration="3178000" />
+      <workItem from="1711033614522" duration="433000" />
+      <workItem from="1711045907093" duration="14000" />
+      <workItem from="1711054259329" duration="5827000" />
+      <workItem from="1711487891179" duration="345000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -287,7 +290,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710423858826</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Created refresh table functions">
+      <created>1710424432439</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1710424432439</updated>
+    </task>
+    <task id="LOCAL-00024" summary="package refactoring">
+      <created>1710424543205</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1710424543205</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +343,9 @@
     <MESSAGE value="Added endpoint detection functionality" />
     <MESSAGE value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
     <MESSAGE value="Added colour renderer to detection table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added colour renderer to detection table" />
+    <MESSAGE value="Created refresh table functions" />
+    <MESSAGE value="package refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="package refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -103,7 +103,7 @@ public class Main extends JFrame{
 
     // Main frame settings
     setContentPane(MainPanel);
-    setTitle("BACscan");
+    setTitle("IACscan");
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setSize(1920, 800);
     setLocationRelativeTo(null);
@@ -122,7 +122,7 @@ public class Main extends JFrame{
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
      */
-    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET", "", "application/json"));
+    //endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET", "", "application/json"));
 
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
@@ -141,6 +141,7 @@ public class Main extends JFrame{
               addEndpointsPost.getText(), addEndpointsContentType.getText());
       endpointManager.addEndpoint(newEndpoint);
       addEndpointsUrl.setText("");
+      addEndpointsPost.setText("");
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
     });
@@ -161,14 +162,14 @@ public class Main extends JFrame{
 
 
     // TOKENS
+    tokenManager.addToken(new Token("Unauthenticated", "Authorization", ""));
 
     /*
     // Unauthenticated example token
-    tokenManager.addToken(new Token("Unauthenticated", "", ""));
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
-    tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
+    //tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
 
     // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
@@ -235,13 +236,15 @@ public class Main extends JFrame{
     // Display cell selection in overview info panel
     viewOverviewTable.getSelectionModel().addListSelectionListener(e -> {
       if (viewOverviewTable.getSelectedColumn() > 1) { // ignore selection of endpoint ID and URL columns
-        Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
-        int selectedColumn = viewOverviewTable.getSelectedColumn();
-        Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
+        if(viewOverviewTable.getSelectedRow() > -1) {
+          Integer selectedEndpointId = Integer.parseInt((String) viewOverviewTable.getValueAt(viewOverviewTable.getSelectedRow(), 0));
+          int selectedColumn = viewOverviewTable.getSelectedColumn();
+          Request selectedRequest = requestManager.getRequestsByEndpointId(selectedEndpointId).get(selectedColumn-2);
 
-        // display custom request formatting in info panel
-        overviewRequestText.setText(selectedRequest.getCustomRequestText());
-        overviewResponseText.setText(selectedRequest.getCustomResponseText());
+          // display custom request formatting in info panel
+          overviewRequestText.setText(selectedRequest.getCustomRequestText());
+          overviewResponseText.setText(selectedRequest.getCustomResponseText());
+        }
       }
     });
 
