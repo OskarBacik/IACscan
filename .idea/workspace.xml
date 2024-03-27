@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Bug fixes">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="added edit endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/endpoints/EndpointManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/endpoints/EndpointManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/tokens/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +135,7 @@
       <workItem from="1711033614522" duration="433000" />
       <workItem from="1711045907093" duration="14000" />
       <workItem from="1711054259329" duration="5827000" />
-      <workItem from="1711487891179" duration="3025000" />
+      <workItem from="1711487891179" duration="5523000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -312,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711488256367</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added edit endpoint">
+      <created>1711491083104</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1711491083104</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +360,8 @@
     <MESSAGE value="Created refresh table functions" />
     <MESSAGE value="package refactoring" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="added edit endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="added edit endpoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

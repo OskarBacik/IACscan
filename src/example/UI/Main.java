@@ -15,8 +15,6 @@ import example.tokens.TokenManager;
 
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -96,6 +94,7 @@ public class Main extends JFrame{
   private JLabel detectionTokenLabel;
   private JButton detectionTokenRefresh;
   private JButton addEndpointsEditButton;
+  private JButton addTokensEditButton;
 
   public Main() {
 
@@ -188,7 +187,7 @@ public class Main extends JFrame{
       }
     });
 
-    // edit endpoint TODO: add headers
+    // edit selected endpoint TODO: add headers
     addEndpointsEditButton.addActionListener(e -> {
       if (viewEndpointsTable.getSelectedRow() > -1) { // if endpoint is selected
         // get selected endpoint
@@ -237,6 +236,30 @@ public class Main extends JFrame{
         refreshTokenTable(tokenTableModel);
       }
     });
+
+    // view selected token
+    viewTokensTable.getSelectionModel().addListSelectionListener(e -> {
+      if (viewTokensTable.getSelectedRow() > -1){ // ignore if row not selected
+        int selectedTokenId = Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(), 0));
+        Token selectedToken = tokenManager.getTokenById(selectedTokenId);
+
+        // update visible text areas
+        addTokensName.setText(selectedToken.getLabel());
+        addTokensHeader.setText(selectedToken.getHeaderName());
+        addTokensToken.setText(selectedToken.getValue());
+      }
+    });
+
+    // edit selected token
+    addTokensEditButton.addActionListener(e -> {
+      if (viewTokensTable.getSelectedRow() > -1){
+        int selectedTokenId = Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(), 0));
+        Token selectedToken = tokenManager.getTokenById(selectedTokenId);
+        selectedToken.editToken(addTokensName.getText(),addTokensHeader.getText(),addTokensToken.getText());
+        refreshTokenTable(tokenTableModel);
+      }
+    });
+
 
 
     // EVALUATE

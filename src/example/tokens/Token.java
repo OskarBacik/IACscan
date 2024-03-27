@@ -15,6 +15,12 @@ public class Token {
     this.value = value;
   }
 
+  public void editToken(String label, String headerName, String value){
+    this.label = label;
+    this.headerName = headerName;
+    this.value = value;
+  }
+
   private synchronized int createId() {
     return ++idCounter;
   }

@@ -34,6 +34,16 @@ public class TokenManager {
     return result;
   }
 
+  public Token getTokenById(int id){
+    List<Token> tokens = getTokenList();
+    for(Token token:tokens){
+      if(token.getId() == id){
+       return token;
+      }
+    }
+    return null;
+  }
+
   public void deleteById(int id) {
     for (Token token : tokenList) {
       if (token.getId() == id) {
