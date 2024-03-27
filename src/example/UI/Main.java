@@ -14,6 +14,8 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -137,10 +139,15 @@ public class Main extends JFrame{
       addEndpointsBodyPanel.setVisible(!"GET".equals(selectedMethod) && !"DELETE".equals(selectedMethod));
     });
 
-    // Add endpoint button TODO: add headers
+    // Add endpoint button
     addEndpointsButton.addActionListener(e -> {
+
+      // parse headers into list
+      List<String> headers = new ArrayList<>(Arrays.asList(addEndpointsHeaders.getText().split("\n")));
+      System.out.println(headers);
+
       Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
-              addEndpointsPost.getText(), addEndpointsContentType.getText());
+              addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
       endpointManager.addEndpoint(newEndpoint);
       addEndpointsUrl.setText("");
       addEndpointsPost.setText("");
@@ -180,25 +187,33 @@ public class Main extends JFrame{
         }
 
         // get remaining fields
-        // TODO: add headers
         addEndpointsUrl.setText(selectedEndpoint.getUrl());
         addEndpointsPost.setText(selectedEndpoint.getBodyContent());
         addEndpointsContentType.setText(selectedEndpoint.getContentType());
+        addEndpointsHeaders.setText(String.join("\n", selectedEndpoint.getHeaders()));
       }
     });
 
-    // edit selected endpoint TODO: add headers
+    // edit selected endpoint
     addEndpointsEditButton.addActionListener(e -> {
       if (viewEndpointsTable.getSelectedRow() > -1) { // if endpoint is selected
         // get selected endpoint
         int selectedEndpointId = Integer.parseInt((String) viewEndpointsTable.getValueAt(viewEndpointsTable.getSelectedRow(), 0));
         Endpoint selectedEndpoint = endpointManager.getEndpointById(selectedEndpointId);
+
+        // parse headers into list
+        List<String> headers = new ArrayList<>(Arrays.asList(addEndpointsHeaders.getText().split("\n")));
+        System.out.println(headers);
+
         // overwrite contents
         selectedEndpoint.editEndpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
-                addEndpointsPost.getText(), addEndpointsContentType.getText());
+                addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
+
         // update table
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
+        addEndpointsUrl.setText("");
+        addEndpointsPost.setText("");
       }
     });
 
@@ -206,10 +221,11 @@ public class Main extends JFrame{
 
 
     // TOKENS
+
+    // Unauthenticated example token
     tokenManager.addToken(new Token("Unauthenticated", "Authorization", ""));
 
     /*
-    // Unauthenticated example token
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
@@ -414,7 +430,8 @@ public class Main extends JFrame{
         if(!Objects.equals(endpoint.getMethod(), method)) {
 
           // create a new detection endpoint with different method
-          Endpoint newEndpoint = new Endpoint(endpoint.getUrl(), method, endpoint.getBodyContent(), endpoint.getContentType());
+          Endpoint newEndpoint = new Endpoint(endpoint.getUrl(), method, endpoint.getBodyContent(),
+                  endpoint.getContentType(), endpoint.getHeaders());
           endpointManager.addDetectionEndpoint(newEndpoint);
 
           // create and send request

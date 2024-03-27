@@ -72,6 +72,12 @@ public class Request {
       }
     }
 
+    // add headers to request
+    for (String header : endpoint.getHeaders()) {
+      String[] headerParts = header.split(":");
+      request = request.newBuilder().addHeader(headerParts[0], headerParts[1]).build();
+    }
+
 
     this.request = request;
     Response response = client.newCall(request).execute();

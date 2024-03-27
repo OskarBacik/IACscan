@@ -3,6 +3,8 @@ package example.endpoints;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import java.util.List;
+
 public class Endpoint {
 
   private static int idCounter = 0;
@@ -12,22 +14,25 @@ public class Endpoint {
   private RequestBody body;
   private String bodyContent;
   private String contentType;
+  private List<String> headers;
 
-  public Endpoint(String url, String method, String bodyContent, String contentType) { // TODO: add headers
+  public Endpoint(String url, String method, String bodyContent, String contentType, List<String> headers) {
     this.id = createId();
     this.url = url;
     this.method = method;
     this.bodyContent = bodyContent;
     this.contentType = contentType;
     this.body = RequestBody.create(bodyContent, MediaType.parse(contentType));
+    this.headers = headers;
   }
 
-  public void editEndpoint(String url, String method, String bodyContent, String contentType) {
+  public void editEndpoint(String url, String method, String bodyContent, String contentType, List<String> headers) {
     this.url = url;
     this.method = method;
     this.bodyContent = bodyContent;
     this.contentType = contentType;
     this.body = RequestBody.create(bodyContent, MediaType.parse(contentType));
+    this.headers = headers;
   }
 
   private synchronized int createId() {
@@ -56,6 +61,10 @@ public class Endpoint {
 
   public String getContentType() {
     return contentType;
+  }
+
+  public List<String> getHeaders() {
+    return headers;
   }
 
   public void setUrl(String url) {
