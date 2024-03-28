@@ -14,8 +14,6 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -182,7 +180,6 @@ public class Main extends JFrame{
         for (int i = 0 ; i < methodsList.size(); i++){
           if(Objects.equals(selectedEndpoint.getMethod(), methodsList.get(i))) {
             addEndpointsMethod.setSelectedIndex(i);
-            System.out.println("success");
           }
         }
 
@@ -203,7 +200,6 @@ public class Main extends JFrame{
 
         // parse headers into list
         List<String> headers = new ArrayList<>(Arrays.asList(addEndpointsHeaders.getText().split("\n")));
-        System.out.println(headers);
 
         // overwrite contents
         selectedEndpoint.editEndpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
@@ -306,6 +302,7 @@ public class Main extends JFrame{
         // display custom request formatting in info panel
         evaluateRequestText.setText(selectedRequest.getCustomRequestText());
         evaluateResponseText.setText(selectedRequest.getCustomResponseText());
+        viewEvaluateTable.clearSelection(); // TEST
       }
     });
 
@@ -328,6 +325,7 @@ public class Main extends JFrame{
           // display custom request formatting in info panel
           overviewRequestText.setText(selectedRequest.getCustomRequestText());
           overviewResponseText.setText(selectedRequest.getCustomResponseText());
+          viewOverviewTable.clearSelection(); // TEST
         }
       }
     });

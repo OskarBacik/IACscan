@@ -43,7 +43,6 @@ public class Request {
         request = new okhttp3.Request.Builder()
                 .url(endpoint.getUrl())
                 .method(endpoint.getMethod(), endpoint.getBody())
-                .addHeader("accept", "application/json")
                 .addHeader("Content-Type", endpoint.getContentType())
                 .build();
       }
@@ -66,7 +65,6 @@ public class Request {
                 .url(endpoint.getUrl())
                 .method(endpoint.getMethod(), endpoint.getBody())
                 .addHeader(token.getHeaderName(), token.getValue())
-                .addHeader("accept", "application/json")
                 .addHeader("Content-Type", endpoint.getContentType())
                 .build();
       }

@@ -14,7 +14,7 @@ public class OverviewTableColourRenderer extends DefaultTableCellRenderer {
     Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
     int responseCode;
-    List<Integer> greenList = Arrays.asList(200,201,202);
+    List<Integer> greenList = Arrays.asList(200,201,202,204);
     List<Integer> orangeList = Arrays.asList(300,301,302,304,307,308);
     List<Integer> redList = Arrays.asList(400,401,402,403);
 

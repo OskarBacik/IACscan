@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added edit tokens">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added headers to endpoints and requests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/endpoints/Endpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +138,8 @@
       <workItem from="1711572053620" duration="136000" />
       <workItem from="1711573602300" duration="54000" />
       <workItem from="1711576283877" duration="146000" />
-      <workItem from="1711580468541" duration="1679000" />
+      <workItem from="1711580468541" duration="2494000" />
+      <workItem from="1711631115147" duration="1470000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -329,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711572142604</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added headers to endpoints and requests">
+      <created>1711582372910</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711582372910</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +355,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First commit" />
     <MESSAGE value="Added functioning token table" />
     <MESSAGE value="Added delete to endpoints" />
     <MESSAGE value="Added request functionality and basic display in evaluate" />
@@ -372,7 +379,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="added edit endpoint" />
     <MESSAGE value="Added edit tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added edit tokens" />
+    <MESSAGE value="Added headers to endpoints and requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added headers to endpoints and requests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
