@@ -14,6 +14,7 @@ import example.tokens.Token;
 import example.tokens.TokenManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,6 +96,9 @@ public class Main extends JFrame{
   private JButton detectionTokenRefresh;
   private JButton addEndpointsEditButton;
   private JButton addTokensEditButton;
+  private JLabel EndpointsErrorLabel;
+  private JLabel TokensErrorLabel;
+  private JLabel detectionErrorLabel;
 
   public Main() {
 
@@ -139,18 +143,21 @@ public class Main extends JFrame{
 
     // Add endpoint button
     addEndpointsButton.addActionListener(e -> {
-
       // parse headers into list
       List<String> headers = new ArrayList<>(Arrays.asList(addEndpointsHeaders.getText().split("\n")));
       System.out.println(headers);
 
+      // create new endpoint
       Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
               addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
       endpointManager.addEndpoint(newEndpoint);
+
+      // update table and fields
       addEndpointsUrl.setText("");
       addEndpointsPost.setText("");
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
+      endpointsErrorMessage("Endpoint added successfully", Color.green);
     });
 
     // Add endpoint curl button
@@ -165,6 +172,9 @@ public class Main extends JFrame{
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
       }
+      else{
+        endpointsErrorMessage("Please select an endpoint to delete", Color.red);
+      }
     });
 
     // view selected endpoint
@@ -172,6 +182,7 @@ public class Main extends JFrame{
       // ignore if not selected
       if (viewEndpointsTable.getSelectedRow() > -1){
 
+        // get selected endpoint
         int selectedEndpointId = Integer.parseInt((String) viewEndpointsTable.getValueAt(viewEndpointsTable.getSelectedRow(),0));
         Endpoint selectedEndpoint = endpointManager.getEndpointById(selectedEndpointId);
 
@@ -205,11 +216,15 @@ public class Main extends JFrame{
         selectedEndpoint.editEndpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
                 addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
 
-        // update table
+        // update table and fields
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
         addEndpointsUrl.setText("");
         addEndpointsPost.setText("");
+        endpointsErrorMessage("Endpoint edited successfully", Color.green);
+      }
+      else{
+        endpointsErrorMessage("Please select an endpoint to edit", Color.red);
       }
     });
 
@@ -239,6 +254,7 @@ public class Main extends JFrame{
       addTokensHeader.setText("");
       addTokensToken.setText("");
       refreshTokenTable(tokenTableModel);
+      tokensErrorMessage("Token added successfully", Color.green);
     });
 
     // Delete token button
@@ -246,6 +262,9 @@ public class Main extends JFrame{
       if(viewTokensTable.getSelectedRow() != -1) { // no row selected = error
         tokenManager.deleteById(Integer.parseInt((String) viewTokensTable.getValueAt(viewTokensTable.getSelectedRow(),0)));
         refreshTokenTable(tokenTableModel);
+      }
+      else{
+        tokensErrorMessage("Please select a token to delete", Color.red);
       }
     });
 
@@ -269,6 +288,10 @@ public class Main extends JFrame{
         Token selectedToken = tokenManager.getTokenById(selectedTokenId);
         selectedToken.editToken(addTokensName.getText(),addTokensHeader.getText(),addTokensToken.getText());
         refreshTokenTable(tokenTableModel);
+        tokensErrorMessage("Token edited successfully", Color.green);
+      }
+      else{
+        tokensErrorMessage("Please select a token to edit", Color.red);
       }
     });
 
@@ -357,16 +380,23 @@ public class Main extends JFrame{
 
     // add endpoint
     detectionAddButton.addActionListener(e -> {
-      // get endpoint and move to endpoints list
-      int selectedDetectionId = Integer.parseInt((String) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(),0));
-      Request selectedRequest = requestManager.getDetectionById(selectedDetectionId);
-      if(selectedRequest != null) {
-        endpointManager.moveDetectionToMain(selectedRequest.getEndpoint().getId());
+      if(viewDetectionTable.getSelectedRow() != -1) {
+        // get endpoint and move to endpoints list
+        int selectedDetectionId = Integer.parseInt((String) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(),0));
+        Request selectedRequest = requestManager.getDetectionById(selectedDetectionId);
+        if(selectedRequest != null) {
+          endpointManager.moveDetectionToMain(selectedRequest.getEndpoint().getId());
+        }
+
+        // refresh tables
+        endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
+        endpointsTableModel.fireTableDataChanged();
+        refreshDetectionTable(detectionTableModel);
+        detectionErrorMessage("Endpoint added successfully", Color.green);
       }
-      // refresh tables
-      endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
-      endpointsTableModel.fireTableDataChanged();
-      refreshDetectionTable(detectionTableModel);
+      else{
+        detectionErrorMessage("Please select an endpoint to add", Color.red);
+      }
     });
 
     AddEndpointsPanel.addComponentListener(new ComponentAdapter() {
@@ -406,11 +436,11 @@ public class Main extends JFrame{
 
   // Send requests to each endpoint with new HTTP methods
   public void detectMethods() throws IOException {
-    List<Endpoint> endpointList = endpointManager.getEndpoints();
     List<String> methods = Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
 
     // check if token is selected, return if none selected
     if(detectionTokenBox.getSelectedIndex() == -1) {
+      detectionErrorMessage("Please select a token", Color.red);
       return;
     }
     Token selectedToken = tokenManager.getTokenList().get(detectionTokenBox.getSelectedIndex());
@@ -488,6 +518,24 @@ public class Main extends JFrame{
   public void refreshEvaluateTable(EvaluateTableModel evaluateTableModel) {
     evaluateTableModel.setDataVector(requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
     evaluateTableModel.fireTableDataChanged();
+  }
+
+  // Set error message for endpoints page
+  public void endpointsErrorMessage(String message, Color colour) {
+    EndpointsErrorLabel.setText(message);
+    EndpointsErrorLabel.setForeground(colour);
+  }
+
+  // Set error message for tokens page
+  public void tokensErrorMessage(String message, Color colour) {
+    TokensErrorLabel.setText(message);
+    TokensErrorLabel.setForeground(colour);
+  }
+
+  // Set error message for detection page
+  public void detectionErrorMessage(String message, Color colour) {
+    detectionErrorLabel.setText(message);
+    detectionErrorLabel.setForeground(colour);
   }
 
 
