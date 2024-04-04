@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Bug fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added error and success messages to UI">
+      <change afterPath="$PROJECT_DIR$/src/example/UI/logic/ErrorMessages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/logic/RequestLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/logic/TableLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UI/tableModels/UdaTableModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/uda/Uda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/uda/UdaManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
@@ -18,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -142,6 +148,8 @@
       <workItem from="1711631115147" duration="1876000" />
       <workItem from="1711638014498" duration="5465000" />
       <workItem from="1712103737677" duration="1168000" />
+      <workItem from="1712191878195" duration="2253000" />
+      <workItem from="1712195185705" duration="6803000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -346,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711632748946</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added error and success messages to UI">
+      <created>1712191952312</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1712191952312</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +379,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added functioning token table" />
     <MESSAGE value="Added delete to endpoints" />
     <MESSAGE value="Added request functionality and basic display in evaluate" />
     <MESSAGE value="Added request and response detail windows to Evaluate panel" />
@@ -389,7 +403,8 @@
     <MESSAGE value="Added edit tokens" />
     <MESSAGE value="Added headers to endpoints and requests" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="Added error and success messages to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added error and success messages to UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

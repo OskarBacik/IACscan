@@ -2,16 +2,15 @@ package example.UI;
 
 import example.UI.colourRenderers.DetectionTableColourRenderer;
 import example.UI.colourRenderers.OverviewTableColourRenderer;
-import example.UI.tableModels.EndpointsTableModel;
-import example.UI.tableModels.EvaluateTableModel;
-import example.UI.tableModels.OverviewTableModel;
-import example.UI.tableModels.TokenTableModel;
+import example.UI.tableModels.*;
 import example.endpoints.Endpoint;
 import example.endpoints.EndpointManager;
 import example.requests.Request;
 import example.requests.RequestManager;
 import example.tokens.Token;
 import example.tokens.TokenManager;
+import example.uda.Uda;
+import example.uda.UdaManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +26,7 @@ public class Main extends JFrame{
   public EndpointManager endpointManager;
   public TokenManager tokenManager;
   public RequestManager requestManager;
+  public UdaManager udaManager;
   private JTabbedPane MainTabbedPane;
   private JPanel EndpointsPanel;
   private JPanel TokensPanel;
@@ -99,6 +99,11 @@ public class Main extends JFrame{
   private JLabel EndpointsErrorLabel;
   private JLabel TokensErrorLabel;
   private JLabel detectionErrorLabel;
+  private JPanel UDAPanel;
+  private JScrollPane ViewUDAPanel;
+  private JTable viewUDATable;
+  private JButton refreshUDAButton;
+  private JButton updateUDAButton;
 
   public Main() {
 
@@ -106,6 +111,8 @@ public class Main extends JFrame{
     endpointManager = new EndpointManager();
     tokenManager = new TokenManager();
     requestManager = new RequestManager();
+    udaManager = new UdaManager();
+
 
     // Main frame settings
     setContentPane(MainPanel);
@@ -117,18 +124,20 @@ public class Main extends JFrame{
     setVisible(true);
 
 
-    // ENDPOINTS
+    /* ENDPOINTS */ // TODO: Remove body from table and add tags
 
     /*
     // Example data - TODO: Remove
-    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
-            "", "application/json"));
+
     endpointManager.addEndpoint(new Endpoint("https://google.com/doesntexist", "GET",
             "", "application/json"));
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
      */
-    //endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET", "", "application/json"));
+    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
+            "", "application/json", new ArrayList<>()));
+    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET",
+            "", "application/json", new ArrayList<>()));
 
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
@@ -231,7 +240,7 @@ public class Main extends JFrame{
 
 
 
-    // TOKENS
+    /* TOKENS */
 
     // Unauthenticated example token
     tokenManager.addToken(new Token("Unauthenticated", "Authorization", ""));
@@ -240,7 +249,7 @@ public class Main extends JFrame{
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
-    //tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
+    tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
 
     // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
@@ -296,8 +305,16 @@ public class Main extends JFrame{
     });
 
 
+    /* UDA */
 
-    // EVALUATE
+    // Initialise table
+    createUdaObjects();
+    UdaTableModel udaTableModel = new UdaTableModel(this, getUdaColumnNames());
+    viewUDATable.setModel(udaTableModel);
+
+
+
+    /* EVALUATE */
 
     // Initialise table
     EvaluateTableModel evaluateTableModel = new EvaluateTableModel(this);
@@ -330,7 +347,7 @@ public class Main extends JFrame{
     });
 
 
-    // OVERVIEW
+    /* OVERVIEW */
 
     // Initialise table
     String[] overviewColumnNames = getOverviewColumnNames();
@@ -354,7 +371,7 @@ public class Main extends JFrame{
     });
 
 
-    // DETECTION
+    /* DETECTION */
 
     // reusing evaluate table model due to same layout
     EvaluateTableModel detectionTableModel = new EvaluateTableModel(this);
@@ -406,6 +423,8 @@ public class Main extends JFrame{
   public static void main(String[] args) {
     new Main();
   }
+
+  /* Request logic */
 
   // Send requests to each endpoint with each token and collect responses
   public void sendRequests(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
@@ -469,6 +488,8 @@ public class Main extends JFrame{
     }
   }
 
+  /* Get column names for tables */
+
   // Get column names for Overview table
   public String[] getOverviewColumnNames() {
     List<String> columnNames = new ArrayList<>();
@@ -479,6 +500,33 @@ public class Main extends JFrame{
     }
     return columnNames.toArray(new String[0]);
   }
+
+  // Get column names for UDA table
+  public String[] getUdaColumnNames() {
+    List<String> columnNames = new ArrayList<>();
+    columnNames.add("Endpoint ID");
+    columnNames.add("URL");
+    columnNames.add("Method");
+    for(Token token: tokenManager.getTokenList()) {
+      columnNames.add(token.getLabel());
+    }
+    return columnNames.toArray(new String[0]);
+  }
+
+  // Instantiate Uda objects
+  public void createUdaObjects(){
+    udaManager.clearList();
+    for (Endpoint endpoint: endpointManager.getEndpoints()) {
+      List<Boolean> policy = new ArrayList<>();
+      for (Token token: tokenManager.getTokenList()) {
+        policy.add(false);
+      }
+      Uda uda = new Uda(endpoint, policy);
+      udaManager.addUda(uda);
+    }
+  }
+
+  /* Refresh tables */
 
   // Create or refresh table with new possible rows/columns
   public void refreshOverviewTable() {
@@ -497,6 +545,7 @@ public class Main extends JFrame{
     viewOverviewTable.repaint();
   }
 
+  // Refresh detection table
   public void refreshDetectionTable(EvaluateTableModel detectionTableModel) {
     // refresh table
     detectionTableModel.setDataVector(requestManager.toStringArrayDetection(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
@@ -510,15 +559,25 @@ public class Main extends JFrame{
     viewDetectionTable.repaint();
   }
 
+  // Refresh token table
   public void refreshTokenTable(TokenTableModel tokenTableModel) {
     tokenTableModel.setDataVector(tokenManager.toStringArray(), new String[]{"ID", "Label", "Header Name", "Value"});
     tokenTableModel.fireTableDataChanged();
   }
 
+  // Refresh evaluate table
   public void refreshEvaluateTable(EvaluateTableModel evaluateTableModel) {
     evaluateTableModel.setDataVector(requestManager.toStringArrayEvaluate(), new String[]{"ID", "Method", "URL", "Token", "Response code"});
     evaluateTableModel.fireTableDataChanged();
   }
+
+  // Refresh UDA table
+  public void refreshUdaTable(UdaTableModel udaTableModel) {
+    udaTableModel.setDataVector(udaManager.toStringArray(), getUdaColumnNames());
+    udaTableModel.fireTableDataChanged();
+  }
+
+  /* Error messages */
 
   // Set error message for endpoints page
   public void endpointsErrorMessage(String message, Color colour) {
