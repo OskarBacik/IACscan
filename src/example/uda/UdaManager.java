@@ -37,4 +37,13 @@ public class UdaManager {
   public void clearList() {
     udaList.clear();
   }
+
+  public Uda getUdaById(int id) {
+    for (Uda uda : udaList) {
+      if (uda.getId() == id) {
+        return uda;
+      }
+    }
+    return null;
+  }
 }

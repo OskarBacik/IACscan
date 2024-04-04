@@ -103,7 +103,7 @@ public class Main extends JFrame{
   private JScrollPane ViewUDAPanel;
   private JTable viewUDATable;
   private JButton refreshUDAButton;
-  private JButton updateUDAButton;
+  private JLabel UDAlabel;
 
   public Main() {
 
@@ -311,6 +311,27 @@ public class Main extends JFrame{
     createUdaObjects();
     UdaTableModel udaTableModel = new UdaTableModel(this, getUdaColumnNames());
     viewUDATable.setModel(udaTableModel);
+
+    // Refresh UDA table button
+    refreshUDAButton.addActionListener(e -> {
+      createUdaObjects();
+      refreshUdaTable(udaTableModel);
+    });
+
+    // Change UDA policy on selection
+    viewUDATable.getSelectionModel().addListSelectionListener(e -> {
+      if (viewUDATable.getSelectedRow() > -1) {
+        int selectedEndpointId = Integer.parseInt((String) viewUDATable.getValueAt(viewUDATable.getSelectedRow(), 0));
+        Uda selectedUda = udaManager.getUdaById(selectedEndpointId);
+
+        if (viewUDATable.getSelectedColumn() > 2) {
+          int selectedTokenIndex = viewUDATable.getSelectedColumn() - 3;
+          selectedUda.getPolicy().set(selectedTokenIndex, !selectedUda.getPolicy().get(selectedTokenIndex));
+          refreshUdaTable(udaTableModel);
+        }
+        viewUDATable.clearSelection();
+      }
+    });
 
 
 
@@ -539,7 +560,8 @@ public class Main extends JFrame{
     // refresh cell colour for all columns except ID and URL columns
     for (int columnIndex = 0; columnIndex < viewOverviewTable.getColumnCount(); columnIndex++) {
       if(columnIndex>1) {
-        viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer());
+        viewOverviewTable.getColumnModel().getColumn(columnIndex).setCellRenderer(new OverviewTableColourRenderer(
+                endpointManager, requestManager, udaManager));
       }
     }
     viewOverviewTable.repaint();

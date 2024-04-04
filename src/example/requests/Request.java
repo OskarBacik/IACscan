@@ -135,4 +135,12 @@ public class Request {
     return response.protocol().name() + " " + response.code() + " " + response.message() +
             "\n" + response.headers().toString() + "\n\n" + this.getResponseBodyString();
   }
+
+  public int getContentLength() {
+    String contentLength = this.response.header("Content-Length");
+    if (contentLength == null) {
+      return 0;
+    }
+    return Integer.parseInt(contentLength);
+  }
 }
