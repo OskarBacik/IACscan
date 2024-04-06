@@ -104,6 +104,13 @@ public class Main extends JFrame{
   private JTable viewUDATable;
   private JButton refreshUDAButton;
   private JLabel UDAlabel;
+  private JCheckBox detectionGet;
+  private JCheckBox detectionPost;
+  private JCheckBox detectionPatch;
+  private JCheckBox detectionDelete;
+  private JCheckBox detectionOptions;
+  private JCheckBox detectionPut;
+  private JLabel detectionMethodsLabel;
 
   public Main() {
 
@@ -135,8 +142,6 @@ public class Main extends JFrame{
             "", "application/json"));
      */
     endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
-            "", "application/json", new ArrayList<>()));
-    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents/31571", "GET",
             "", "application/json", new ArrayList<>()));
 
     // Initialise table
@@ -320,7 +325,7 @@ public class Main extends JFrame{
 
     // Change UDA policy on selection
     viewUDATable.getSelectionModel().addListSelectionListener(e -> {
-      if (viewUDATable.getSelectedRow() > -1) {
+      if (viewUDATable.getSelectedRow() > -1) { // ignore if selected row is < 0
         int selectedEndpointId = Integer.parseInt((String) viewUDATable.getValueAt(viewUDATable.getSelectedRow(), 0));
         Uda selectedUda = udaManager.getUdaById(selectedEndpointId);
 
@@ -476,7 +481,27 @@ public class Main extends JFrame{
 
   // Send requests to each endpoint with new HTTP methods
   public void detectMethods() throws IOException {
-    List<String> methods = Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
+
+    // Pass selected methods into arraylist
+    List<String> methods = new ArrayList<>();
+    if(detectionGet.isSelected()) {
+      methods.add("GET");
+    }
+    if(detectionPost.isSelected()) {
+      methods.add("POST");
+    }
+    if(detectionPut.isSelected()) {
+      methods.add("PUT");
+    }
+    if(detectionPatch.isSelected()) {
+      methods.add("PATCH");
+    }
+    if(detectionDelete.isSelected()) {
+      methods.add("DELETE");
+    }
+    if(detectionOptions.isSelected()) {
+      methods.add("OPTIONS");
+    }
 
     // check if token is selected, return if none selected
     if(detectionTokenBox.getSelectedIndex() == -1) {

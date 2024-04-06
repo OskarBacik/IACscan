@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Created UDA Policy Classes and table">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Integrated UDA policy with overview panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/uda/UdaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/uda/UdaManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +143,7 @@
       <workItem from="1711638014498" duration="5465000" />
       <workItem from="1712103737677" duration="1168000" />
       <workItem from="1712191878195" duration="2253000" />
-      <workItem from="1712195185705" duration="11417000" />
+      <workItem from="1712195185705" duration="17797000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -365,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712246042050</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Integrated UDA policy with overview panel">
+      <created>1712252298516</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1712252298516</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +387,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added request functionality and basic display in evaluate" />
     <MESSAGE value="Added request and response detail windows to Evaluate panel" />
     <MESSAGE value="Created overview table" />
     <MESSAGE value="Extracted table models from main" />
@@ -408,7 +411,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Added error and success messages to UI" />
     <MESSAGE value="Created UDA Policy Classes and table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created UDA Policy Classes and table" />
+    <MESSAGE value="Integrated UDA policy with overview panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated UDA policy with overview panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
