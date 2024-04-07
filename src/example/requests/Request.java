@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.util.Objects;
 
 import example.tokens.Token;
 
@@ -26,58 +27,32 @@ public class Request {
 
     OkHttpClient client = new OkHttpClient();
 
-    okhttp3.Request request;
+    // create request builder
+    okhttp3.Request.Builder requestBuilder = new okhttp3.Request.Builder().url(endpoint.getUrl());
 
-    // unauthenticated request
-    if(token.getValue().equals("")) {
-      if ("GET".equals(endpoint.getMethod())) { // GET request
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .build();
-      } else if ("DELETE".equals(endpoint.getMethod())) { // DELETE request
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .delete()
-                .build();
-      } else { // All other methods
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .method(endpoint.getMethod(), endpoint.getBody())
-                .addHeader("Content-Type", endpoint.getContentType())
-                .build();
-      }
+    // add token for authenticated request
+    if (!Objects.equals(token.getValue(), "")) {
+      requestBuilder.addHeader(token.getHeaderName(), token.getValue());
     }
-    // authenticated request
-    else {
-      if ("GET".equals(endpoint.getMethod())) { // GET request
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .addHeader(token.getHeaderName(), token.getValue())
-                .build();
-      } else if ("DELETE".equals(endpoint.getMethod())) { // DELETE request
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .delete()
-                .addHeader(token.getHeaderName(), token.getValue())
-                .build();
-      } else { // All other methods
-        request = new okhttp3.Request.Builder()
-                .url(endpoint.getUrl())
-                .method(endpoint.getMethod(), endpoint.getBody())
-                .addHeader(token.getHeaderName(), token.getValue())
-                .addHeader("Content-Type", endpoint.getContentType())
-                .build();
-      }
+    // Set method for GET and DELETE
+    if ("GET".equals(endpoint.getMethod())) {
+      requestBuilder.get();
+    } else if ("DELETE".equals(endpoint.getMethod())) {
+      requestBuilder.delete();
+    } else {
+      // All other methods, include Request Body and Content Type
+      requestBuilder.method(endpoint.getMethod(), endpoint.getBody())
+              .addHeader("Content-Type", endpoint.getContentType());
     }
 
-    // add headers to request
+    // add other headers to request
     for (String header : endpoint.getHeaders()) {
       String[] headerParts = header.split(":");
-      request = request.newBuilder().addHeader(headerParts[0], headerParts[1]).build();
+      requestBuilder.addHeader(headerParts[0], headerParts[1]).build();
     }
 
-
-    this.request = request;
+    // build and execute request, collecting response
+    this.request = requestBuilder.build();
     Response response = client.newCall(request).execute();
 
     // TODO: unsuccessful request management

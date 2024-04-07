@@ -166,6 +166,8 @@ public class Main extends JFrame{
               addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
       endpointManager.addEndpoint(newEndpoint);
 
+      refreshUdaObjects(); // TODO: temp fix
+
       // update table and fields
       addEndpointsUrl.setText("");
       addEndpointsPost.setText("");
@@ -313,13 +315,13 @@ public class Main extends JFrame{
     /* UDA */
 
     // Initialise table
-    createUdaObjects();
+    refreshUdaObjects();
     UdaTableModel udaTableModel = new UdaTableModel(this, getUdaColumnNames());
     viewUDATable.setModel(udaTableModel);
 
     // Refresh UDA table button
     refreshUDAButton.addActionListener(e -> {
-      createUdaObjects();
+      refreshUdaObjects();
       refreshUdaTable(udaTableModel);
     });
 
@@ -560,7 +562,7 @@ public class Main extends JFrame{
   }
 
   // Instantiate Uda objects
-  public void createUdaObjects(){
+  public void refreshUdaObjects(){
     udaManager.clearList();
     for (Endpoint endpoint: endpointManager.getEndpoints()) {
       List<Boolean> policy = new ArrayList<>();

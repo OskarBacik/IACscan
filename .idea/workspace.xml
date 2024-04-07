@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Integrated UDA policy with overview panel">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added method selection for detection functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +144,8 @@
       <workItem from="1711638014498" duration="5465000" />
       <workItem from="1712103737677" duration="1168000" />
       <workItem from="1712191878195" duration="2253000" />
-      <workItem from="1712195185705" duration="17797000" />
+      <workItem from="1712195185705" duration="19178000" />
+      <workItem from="1712510947257" duration="4012000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -369,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712252298516</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added method selection for detection functionality">
+      <created>1712415345946</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1712415345946</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +396,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added request and response detail windows to Evaluate panel" />
     <MESSAGE value="Created overview table" />
     <MESSAGE value="Extracted table models from main" />
     <MESSAGE value="Formatting and comments" />
@@ -412,7 +420,8 @@
     <MESSAGE value="Added error and success messages to UI" />
     <MESSAGE value="Created UDA Policy Classes and table" />
     <MESSAGE value="Integrated UDA policy with overview panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated UDA policy with overview panel" />
+    <MESSAGE value="Added method selection for detection functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added method selection for detection functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
