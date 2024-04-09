@@ -47,8 +47,13 @@ public class Request {
 
     // add other headers to request
     for (String header : endpoint.getHeaders()) {
-      String[] headerParts = header.split(":");
-      requestBuilder.addHeader(headerParts[0], headerParts[1]).build();
+      try {
+        String[] headerParts = header.split(":");
+        requestBuilder.addHeader(headerParts[0], headerParts[1]).build();
+      }
+      catch (Exception e) {
+        System.out.println("Error adding header: " + header);
+      }
     }
 
     // build and execute request, collecting response

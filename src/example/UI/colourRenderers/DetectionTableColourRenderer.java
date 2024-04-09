@@ -14,7 +14,7 @@ public class DetectionTableColourRenderer extends DefaultTableCellRenderer {
 
     int responseCode;
     java.util.List<Integer> greenList = Arrays.asList(404,405);
-    List<Integer> redList = Arrays.asList(200,201,202,204,304);
+    List<Integer> redList = Arrays.asList(200,201,202,203,204,205,206); // 304?
 
     // colour code each cell based on the response code
     Object cell = table.getValueAt(row, column);

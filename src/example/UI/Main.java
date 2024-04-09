@@ -243,6 +243,7 @@ public class Main extends JFrame{
         // update table and fields
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
+        refreshUdaObjects(); // TODO: temp fix
         addEndpointsUrl.setText("");
         addEndpointsPost.setText("");
         endpointsErrorMessage("Endpoint edited successfully", Color.green);
@@ -365,6 +366,7 @@ public class Main extends JFrame{
         refreshEvaluateTable(evaluateTableModel);
         refreshOverviewTable();
       } catch (IOException ex) {
+        System.out.println("exception");
         throw new RuntimeException(ex);
       }
     });
@@ -482,19 +484,10 @@ public class Main extends JFrame{
       requestManager.clearList();
     }
 
-    // create progress bar
-    int totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
-    int progress = 0;
-    evaluateBar.setMaximum(totalEndpoints); // TODO: fix or get rid of progress bar
-
     // send a request to each endpoint with each token
     for(Endpoint endpoint: endpointManager.getEndpoints()) {
       for(Token token: tokenManager.getTokenList()) {
         requestManager.addRequest(new Request(endpoint,token));
-        progress += 1;
-        evaluateBar.setValue(progress);
-        evaluateBar.setStringPainted(true);
-        evaluateBar.repaint();
       }
     }
   }

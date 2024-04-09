@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Cleaned up code and UI">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added request and response viewing windows to detection&#10;Bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/DetectionTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/DetectionTableColourRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +148,7 @@
       <workItem from="1712195185705" duration="19178000" />
       <workItem from="1712510947257" duration="6676000" />
       <workItem from="1712535030769" duration="3688000" />
-      <workItem from="1712593152968" duration="4129000" />
+      <workItem from="1712593152968" duration="8008000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -388,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712515482723</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added request and response viewing windows to detection&#10;Bug fixes">
+      <created>1712621887277</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1712621887277</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +413,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Extracted table models from main" />
     <MESSAGE value="Formatting and comments" />
     <MESSAGE value="Added cell colours to overview table" />
     <MESSAGE value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
@@ -431,7 +437,8 @@
     <MESSAGE value="Integrated UDA policy with overview panel" />
     <MESSAGE value="Added method selection for detection functionality" />
     <MESSAGE value="Cleaned up code and UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code and UI" />
+    <MESSAGE value="Added request and response viewing windows to detection&#10;Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added request and response viewing windows to detection&#10;Bug fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -444,6 +451,11 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="6" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/example/requests/Request.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
