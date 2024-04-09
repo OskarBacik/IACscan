@@ -424,7 +424,7 @@
               </component>
             </children>
           </grid>
-          <grid id="92202" binding="DetectionPanel" layout-manager="GridLayoutManager" row-count="5" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="92202" binding="DetectionPanel" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Endpoint Detection"/>
@@ -436,7 +436,7 @@
             <children>
               <scrollpane id="79002" binding="ViewDetectionPanel">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="empty" title="New Detected Endpoints">
@@ -459,85 +459,9 @@
               </component>
               <hspacer id="6fa7c">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="6" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="cb729" class="javax.swing.JCheckBox" binding="detectionGet">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="GET"/>
-                </properties>
-              </component>
-              <component id="100fe" class="javax.swing.JLabel" binding="detectionTokenLabel">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Select highest privillige token:"/>
-                </properties>
-              </component>
-              <component id="bc7b8" class="javax.swing.JCheckBox" binding="detectionPost">
-                <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="POST"/>
-                </properties>
-              </component>
-              <component id="bee22" class="javax.swing.JCheckBox" binding="detectionPut">
-                <constraints>
-                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="PUT"/>
-                </properties>
-              </component>
-              <component id="8c48f" class="javax.swing.JCheckBox" binding="detectionPatch">
-                <constraints>
-                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="true"/>
-                  <text value="PATCH"/>
-                </properties>
-              </component>
-              <component id="54c4d" class="javax.swing.JComboBox" binding="detectionTokenBox">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="f28ec" class="javax.swing.JButton" binding="detectionTokenRefresh">
-                <constraints>
-                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Refresh tokens"/>
-                </properties>
-              </component>
-              <component id="3df2f" class="javax.swing.JCheckBox" binding="detectionDelete">
-                <constraints>
-                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="false"/>
-                  <text value="DELETE"/>
-                </properties>
-              </component>
-              <component id="4e09" class="javax.swing.JCheckBox" binding="detectionOptions">
-                <constraints>
-                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <selected value="false"/>
-                  <text value="OPTIONS"/>
-                </properties>
-              </component>
               <component id="83902" class="javax.swing.JButton" binding="detectionStartButton">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -546,20 +470,164 @@
                   <text value="Start endpoint detection"/>
                 </properties>
               </component>
-              <component id="85703" class="javax.swing.JLabel" binding="detectionMethodsLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Select methods to scan for:"/>
-                </properties>
-              </component>
               <component id="88ffc" class="javax.swing.JLabel" binding="detectionErrorLabel">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value=""/>
+                </properties>
+              </component>
+              <grid id="1d007" binding="DetectionDetailsPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="5" left="5" bottom="5" right="5"/>
+                <constraints>
+                  <grid row="0" column="3" row-span="5" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="400" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="line">
+                  <color color="-4473925"/>
+                </border>
+                <children>
+                  <scrollpane id="449ae" binding="DetectionResponsePanel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="b70ef" class="javax.swing.JTextArea" binding="detectionResponseText">
+                        <constraints/>
+                        <properties>
+                          <editable value="false"/>
+                          <lineWrap value="true"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <scrollpane id="d5963" binding="DetectionRequestPanel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="6ee09" class="javax.swing.JTextArea" binding="detectionRequestText">
+                        <constraints/>
+                        <properties>
+                          <editable value="false"/>
+                          <lineWrap value="true"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                  <component id="28378" class="javax.swing.JLabel" binding="detectionRequestLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Request"/>
+                    </properties>
+                  </component>
+                  <component id="7d1f4" class="javax.swing.JLabel" binding="detectionResponseLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Response"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="ae331" binding="DetectionMethodPanel" layout-manager="GridLayoutManager" row-count="1" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="line" title="Select methods to scan for">
+                  <color color="-4473925"/>
+                </border>
+                <children>
+                  <component id="cb729" class="javax.swing.JCheckBox" binding="detectionGet">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="GET"/>
+                    </properties>
+                  </component>
+                  <component id="bc7b8" class="javax.swing.JCheckBox" binding="detectionPost">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="POST"/>
+                    </properties>
+                  </component>
+                  <component id="bee22" class="javax.swing.JCheckBox" binding="detectionPut">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="PUT"/>
+                    </properties>
+                  </component>
+                  <component id="8c48f" class="javax.swing.JCheckBox" binding="detectionPatch">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="true"/>
+                      <text value="PATCH"/>
+                    </properties>
+                  </component>
+                  <component id="3df2f" class="javax.swing.JCheckBox" binding="detectionDelete">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="false"/>
+                      <text value="DELETE"/>
+                    </properties>
+                  </component>
+                  <component id="4e09" class="javax.swing.JCheckBox" binding="detectionOptions">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <selected value="false"/>
+                      <text value="OPTIONS"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="f28ec" class="javax.swing.JButton" binding="detectionTokenRefresh">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                    <maximum-size width="200" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Refresh tokens"/>
+                </properties>
+              </component>
+              <component id="54c4d" class="javax.swing.JComboBox" binding="detectionTokenBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="6daeb" class="javax.swing.JLabel" binding="detectionTokenLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Select highest privilege token"/>
                 </properties>
               </component>
             </children>
@@ -567,7 +635,7 @@
           <grid id="a03cc" binding="EvaluatePanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Evaluate Requests"/>
+              <tabbedpane title="Evaluate Endpoints"/>
             </constraints>
             <properties/>
             <border type="empty">

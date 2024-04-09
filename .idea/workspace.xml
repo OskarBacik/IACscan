@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added method selection for detection functionality">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Cleaned up code and UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/RequestManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +146,9 @@
       <workItem from="1712103737677" duration="1168000" />
       <workItem from="1712191878195" duration="2253000" />
       <workItem from="1712195185705" duration="19178000" />
-      <workItem from="1712510947257" duration="4012000" />
+      <workItem from="1712510947257" duration="6676000" />
+      <workItem from="1712535030769" duration="3688000" />
+      <workItem from="1712593152968" duration="4129000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -378,7 +381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712415345946</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Cleaned up code and UI">
+      <created>1712515482723</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1712515482723</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +406,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created overview table" />
     <MESSAGE value="Extracted table models from main" />
     <MESSAGE value="Formatting and comments" />
     <MESSAGE value="Added cell colours to overview table" />
@@ -421,7 +430,8 @@
     <MESSAGE value="Created UDA Policy Classes and table" />
     <MESSAGE value="Integrated UDA policy with overview panel" />
     <MESSAGE value="Added method selection for detection functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added method selection for detection functionality" />
+    <MESSAGE value="Cleaned up code and UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code and UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

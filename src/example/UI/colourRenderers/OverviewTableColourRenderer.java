@@ -35,7 +35,7 @@ public class OverviewTableColourRenderer extends DefaultTableCellRenderer {
     int responseCode;
     List<Integer> greenList = Arrays.asList(200, 201, 202, 204);
     List<Integer> orangeList = Arrays.asList(300, 301, 302, 304, 307, 308);
-    List<Integer> forbiddenList = Arrays.asList(400, 401, 402, 403);
+    List<Integer> forbiddenList = Arrays.asList(401, 403);
 
     // colour code each cell based on the response code
     Object cell = table.getValueAt(row, column);

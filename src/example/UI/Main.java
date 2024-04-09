@@ -92,7 +92,6 @@ public class Main extends JFrame{
   private JButton addEndpointsCurlButton;
   private JScrollPane addEndpointsCurlScroll;
   private JComboBox detectionTokenBox;
-  private JLabel detectionTokenLabel;
   private JButton detectionTokenRefresh;
   private JButton addEndpointsEditButton;
   private JButton addTokensEditButton;
@@ -110,7 +109,15 @@ public class Main extends JFrame{
   private JCheckBox detectionDelete;
   private JCheckBox detectionOptions;
   private JCheckBox detectionPut;
-  private JLabel detectionMethodsLabel;
+  private JPanel DetectionDetailsPanel;
+  private JScrollPane DetectionResponsePanel;
+  private JScrollPane DetectionRequestPanel;
+  private JLabel detectionResponseLabel;
+  private JLabel detectionRequestLabel;
+  private JTextArea detectionRequestText;
+  private JTextArea detectionResponseText;
+  private JPanel DetectionMethodPanel;
+  private JLabel detectionTokenLabel;
 
   public Main() {
 
@@ -141,8 +148,9 @@ public class Main extends JFrame{
     endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
             "", "application/json"));
      */
-    endpointManager.addEndpoint(new Endpoint("https://google.com", "GET",
-            "", "application/json", new ArrayList<>()));
+    //endpointManager.addEndpoint(new Endpoint("https://google.com", "GET", "", "application/json", new ArrayList<>()));
+    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents", "GET", "",
+            "application/json", new ArrayList<>()));
 
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
@@ -437,6 +445,7 @@ public class Main extends JFrame{
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
         refreshDetectionTable(detectionTableModel);
+        refreshUdaObjects(); // TODO: temp fix
         detectionErrorMessage("Endpoint added successfully", Color.green);
       }
       else{
@@ -444,7 +453,16 @@ public class Main extends JFrame{
       }
     });
 
-    AddEndpointsPanel.addComponentListener(new ComponentAdapter() {
+    // Display row selection in evaluate info panel
+    viewDetectionTable.getSelectionModel().addListSelectionListener(e -> {
+      if (viewDetectionTable.getSelectedRow() > -1) { // ignore if selected row is < 0
+        int selectedId = Integer.parseInt((String) viewDetectionTable.getValueAt(viewDetectionTable.getSelectedRow(), 0));
+        Request selectedRequest = requestManager.getDetectionById(selectedId);
+
+        // display custom request formatting in info panel
+        detectionRequestText.setText(selectedRequest.getCustomRequestText());
+        detectionResponseText.setText(selectedRequest.getCustomResponseText());
+      }
     });
   }
 
@@ -467,7 +485,7 @@ public class Main extends JFrame{
     // create progress bar
     int totalEndpoints = endpointManager.getEndpoints().size()*tokenManager.getTokenList().size();
     int progress = 0;
-    evaluateBar.setMaximum(totalEndpoints); // TODO: fix progress bar
+    evaluateBar.setMaximum(totalEndpoints); // TODO: fix or get rid of progress bar
 
     // send a request to each endpoint with each token
     for(Endpoint endpoint: endpointManager.getEndpoints()) {
