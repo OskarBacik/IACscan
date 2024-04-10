@@ -14,7 +14,6 @@ import example.uda.UdaManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +48,6 @@ public class Main extends JFrame{
   private JTable viewEndpointsTable;
   private JPanel EvaluatePanel;
   private JButton evaluateButton;
-  private JProgressBar evaluateBar;
   private JScrollPane ViewTokensPanel;
   private JButton deleteTokenButton;
   private JScrollPane ViewEndpointsPanel;
@@ -118,6 +116,7 @@ public class Main extends JFrame{
   private JTextArea detectionResponseText;
   private JPanel DetectionMethodPanel;
   private JLabel detectionTokenLabel;
+  private JPanel HelpPanel;
 
   public Main() {
 
@@ -138,7 +137,7 @@ public class Main extends JFrame{
     setVisible(true);
 
 
-    /* ENDPOINTS */ // TODO: Remove body from table and add tags
+    /* ENDPOINTS */
 
     /*
     // Example data - TODO: Remove
@@ -362,7 +361,7 @@ public class Main extends JFrame{
       viewEvaluateTable.clearSelection();
       viewOverviewTable.clearSelection();
       try {
-        sendRequests(requestManager, endpointManager, tokenManager, evaluateBar);
+        sendRequests(requestManager, endpointManager, tokenManager);
         refreshEvaluateTable(evaluateTableModel);
         refreshOverviewTable();
       } catch (IOException ex) {
@@ -475,8 +474,7 @@ public class Main extends JFrame{
   /* Request logic */
 
   // Send requests to each endpoint with each token and collect responses
-  public void sendRequests(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager,
-                           JProgressBar evaluateBar) throws IOException {
+  public void sendRequests(RequestManager requestManager, EndpointManager endpointManager, TokenManager tokenManager) throws IOException {
 
     // clear request manager
     if(requestManager.getRequests().size() > 0) {
