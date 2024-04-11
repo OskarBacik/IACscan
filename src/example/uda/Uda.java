@@ -28,4 +28,12 @@ public class Uda {
   public List<Boolean> getPolicy() {
     return policy;
   }
+
+  public void setEndpoint(Endpoint endpoint) {
+    this.endpoint = endpoint;
+  }
+
+  public void setPolicy(List<Boolean> policy) {
+    this.policy = policy;
+  }
 }
