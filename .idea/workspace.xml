@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Simplified Detection Colour Renderer">
-      <change afterPath="$PROJECT_DIR$/src/example/test/EndpointTest.java" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Added Endpoint test class and help page">
+      <change afterPath="$PROJECT_DIR$/src/test/RequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/TokenTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/UdaTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BACscan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BACscan.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/uda/Uda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/uda/Uda.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2cvObKkZG3WYMIplCgPfuFbJggq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -52,11 +56,11 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "C:/Users/home/IdeaProjects/BACscan/src/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "shared-indexes",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -72,40 +76,7 @@
       <recent name="example.UI" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EndpointTest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="BACscan" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="example.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="example.Main" />
-      <module name="BACscan" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java.UI.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="java.UI.Main" />
-      <module name="BACscan" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="java.UI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.RequestTest">
     <configuration name="EndpointTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BACscan" />
       <extension name="coverage">
@@ -121,12 +92,74 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BACscan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.RequestTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TokenTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BACscan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TokenTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UdaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BACscan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.UdaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UdaTest.testGetters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BACscan" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.UdaTest" />
+      <option name="METHOD_NAME" value="testGetters" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RequestTest" />
+        <item itemvalue="JUnit.UdaTest" />
+        <item itemvalue="JUnit.UdaTest.testGetters" />
+        <item itemvalue="JUnit.TokenTest" />
         <item itemvalue="JUnit.EndpointTest" />
-        <item itemvalue="Application.example.Main" />
-        <item itemvalue="Application.java.UI.Main" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +201,8 @@
       <workItem from="1712593152968" duration="10554000" />
       <workItem from="1712698568288" duration="494000" />
       <workItem from="1712713405532" duration="1815000" />
-      <workItem from="1712781733928" duration="1275000" />
+      <workItem from="1712781733928" duration="2232000" />
+      <workItem from="1712870394229" duration="3956000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -429,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1712626061869</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Added Endpoint test class and help page">
+      <created>1712783257964</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1712783257964</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ID to overview table&#10;Added request and response details windows to overview panel" />
     <MESSAGE value="Testing and bug fixes" />
     <MESSAGE value="Added custom request and response formatting in info panel" />
     <MESSAGE value="Moved custom renderer class out of main" />
@@ -472,7 +512,8 @@
     <MESSAGE value="Added request and response viewing windows to detection&#10;Bug fixes" />
     <MESSAGE value="Bug fix on adding headers&#10;Removed progress bar from evaluate endpoints" />
     <MESSAGE value="Simplified Detection Colour Renderer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplified Detection Colour Renderer" />
+    <MESSAGE value="Added Endpoint test class and help page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Endpoint test class and help page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
