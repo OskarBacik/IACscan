@@ -19,6 +19,11 @@ public class UdaManager {
   }
 
   public String[][] toStringArray() {
+
+    if (udaList.isEmpty()) {
+      return new String[0][0];
+    }
+
     String[][] result = new String[udaList.size()][udaList.get(0).getPolicy().size() + 3];
 
     for (int i = 0; i < udaList.size(); i++) {
