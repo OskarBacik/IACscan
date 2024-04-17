@@ -84,11 +84,6 @@ public class Main extends JFrame{
   private JTextArea addEndpointsHeaders;
   private JLabel addEndpointsLabel3;
   private JTabbedPane AddEndpointsTabs;
-  private JPanel AddEndpointsCurlPanel;
-  private JLabel addEndpointsCurlLabel;
-  private JTextArea addEndpointsCurlText;
-  private JButton addEndpointsCurlButton;
-  private JScrollPane addEndpointsCurlScroll;
   private JComboBox detectionTokenBox;
   private JButton detectionTokenRefresh;
   private JButton addEndpointsEditButton;
@@ -148,8 +143,7 @@ public class Main extends JFrame{
             "", "application/json"));
      */
     //endpointManager.addEndpoint(new Endpoint("https://google.com", "GET", "", "application/json", new ArrayList<>()));
-    endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents", "GET", "",
-            "application/json", new ArrayList<>()));
+    //endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents", "GET", "", "application/json", new ArrayList<>()));
 
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
@@ -181,11 +175,6 @@ public class Main extends JFrame{
       endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
       endpointsTableModel.fireTableDataChanged();
       endpointsErrorMessage("Endpoint added successfully", Color.green);
-    });
-
-    // Add endpoint curl button
-    addEndpointsCurlButton.addActionListener(e -> {
-      String curlCommand = addEndpointsCurlText.getText(); // TODO: Finish
     });
 
     // Delete endpoint button
@@ -264,7 +253,7 @@ public class Main extends JFrame{
     // Example data - TODO: Remove
     tokenManager.addToken(new Token("admin", "Jwt", "token1"));
     tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
-    tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
+    //tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
 
     // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
