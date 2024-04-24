@@ -29,6 +29,22 @@ The user manual below provides a detailed guide on how to use the tool.
 
 ### Endpoint Detection
 
+- The Endpoint Detection feature allows the user to detect new potentially vulnerable endpoints within the target application.
+- The user is prompted to select a token for the detection process, which will be used to authenticate requests.
+- The user can select which HTTP methods to scan for by selecting them from the list.
+- Starting the process will highlight potentially active endpoints in red.
+- Selecting an individual request will display the raw HTTP request and response in the side panel.
+- Detected endpoints can be added to the "Endpoints" list.
+
 ### Evaluate Endpoints
 
+- The Evaluate Endpoints page allows the user to evaluate the access control policy for each token and endpoint pair.
+- Starting the evaluation process will populate the table with all communication between IACscan and the target.
+- Selecting individual requests will display the raw HTTP request and response in the side panel.
+
 ### Access Control Overview
+
+- The Access Control Overview page compares the UDA policy with the HTTP responses for each request.
+- Requests which match the policy are displayed in green, while potentially vulnerable requests are displayed in orange.
+- Requests which indicate an IAC vulnerable endpoint are displayed in red.
+- Selecting individual requests will display the raw HTTP request and response in the side panel.

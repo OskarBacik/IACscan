@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="removed add curl endpoint">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="User guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,7 +202,7 @@
       <workItem from="1712781733928" duration="2232000" />
       <workItem from="1712870394229" duration="9168000" />
       <workItem from="1713292666058" duration="14313000" />
-      <workItem from="1713985136616" duration="1486000" />
+      <workItem from="1713985136616" duration="2122000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -505,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713362636279</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="User guide">
+      <created>1713986943887</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1713986943887</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +530,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added more response codes to colour render" />
     <MESSAGE value="Added message to response" />
     <MESSAGE value="Added endpoint detection functionality" />
     <MESSAGE value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
@@ -548,7 +554,8 @@
     <MESSAGE value="Bug fix in UDA Manager" />
     <MESSAGE value="Added tests to Class Managers" />
     <MESSAGE value="removed add curl endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed add curl endpoint" />
+    <MESSAGE value="User guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="User guide" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
