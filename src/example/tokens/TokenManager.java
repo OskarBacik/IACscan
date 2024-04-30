@@ -5,7 +5,6 @@ import java.util.List;
 
 public class TokenManager {
 
-  // for storing auth main.requests.tokens, owner:token e.g. admin:{token1}, user:{token2}
   private List<Token> tokenList;
 
   public TokenManager() {

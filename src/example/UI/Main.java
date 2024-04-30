@@ -134,17 +134,6 @@ public class Main extends JFrame{
 
     /* ENDPOINTS */
 
-    /*
-    // Example data - TODO: Remove
-
-    endpointManager.addEndpoint(new Endpoint("https://google.com/doesntexist", "GET",
-            "", "application/json"));
-    endpointManager.addEndpoint(new Endpoint("https://mail.google.com/mail/u/0/#inbox", "GET",
-            "", "application/json"));
-     */
-    //endpointManager.addEndpoint(new Endpoint("https://google.com", "GET", "", "application/json", new ArrayList<>()));
-    //endpointManager.addEndpoint(new Endpoint("https://api.sandbox.billit.be/v1/documents", "GET", "", "application/json", new ArrayList<>()));
-
     // Initialise table
     EndpointsTableModel endpointsTableModel = new EndpointsTableModel(this);
     viewEndpointsTable.setModel(endpointsTableModel);
@@ -160,14 +149,12 @@ public class Main extends JFrame{
     addEndpointsButton.addActionListener(e -> {
       // parse headers into list
       List<String> headers = new ArrayList<>(Arrays.asList(addEndpointsHeaders.getText().split("\n")));
-      System.out.println(headers);
 
       // create new endpoint
       Endpoint newEndpoint = new Endpoint(addEndpointsUrl.getText(), (String) addEndpointsMethod.getSelectedItem(),
               addEndpointsPost.getText(), addEndpointsContentType.getText(), headers);
       endpointManager.addEndpoint(newEndpoint);
-
-      refreshUdaObjects(); // TODO: temp fix
+      refreshUdaObjects();
 
       // update table and fields
       addEndpointsUrl.setText("");
@@ -231,7 +218,7 @@ public class Main extends JFrame{
         // update table and fields
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
-        refreshUdaObjects(); // TODO: temp fix
+        refreshUdaObjects();
         addEndpointsUrl.setText("");
         addEndpointsPost.setText("");
         endpointsErrorMessage("Endpoint edited successfully", Color.green);
@@ -248,12 +235,6 @@ public class Main extends JFrame{
 
     // Unauthenticated example token
     tokenManager.addToken(new Token("Unauthenticated", "Authorization", ""));
-
-    /*
-    // Example data - TODO: Remove
-    tokenManager.addToken(new Token("admin", "Jwt", "token1"));
-    tokenManager.addToken(new Token("user", "Jwt", "token2"));*/
-    //tokenManager.addToken(new Token("me", "Apikey", "7108397b-6055-497f-970c-b3168387a27c"));
 
     // Initialise table
     TokenTableModel tokenTableModel = new TokenTableModel(this);
@@ -435,7 +416,7 @@ public class Main extends JFrame{
         endpointsTableModel.setDataVector(endpointManager.toStringArray(), new String[]{"ID", "URL", "Method", "Body"});
         endpointsTableModel.fireTableDataChanged();
         refreshDetectionTable(detectionTableModel);
-        refreshUdaObjects(); // TODO: temp fix
+        refreshUdaObjects();
         detectionErrorMessage("Endpoint added successfully", Color.green);
       }
       else{

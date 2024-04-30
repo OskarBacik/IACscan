@@ -119,7 +119,8 @@ public class Request {
   public int getContentLength() {
     String contentLength = this.response.header("Content-Length");
     if (contentLength == null) {
-      return 0;
+      // get content length from response body
+      return this.responseBodyString.length();
     }
     return Integer.parseInt(contentLength);
   }

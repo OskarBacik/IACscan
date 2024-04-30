@@ -9,7 +9,6 @@ public class UdaTableModel extends DefaultTableModel {
   public UdaTableModel(Main main, String[] columnNames) {
     super(main.udaManager.toStringArray(), columnNames);
     this.main = main;
-    // ID, URL, Method, role1, role2, role3, role4, role5....
   }
 
   @Override

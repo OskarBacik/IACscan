@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="User guide">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Updated user guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/UI/tableModels/UdaTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tableModels/UdaTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,34 +40,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "164",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/Users/home/IdeaProjects/BACscan/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/home/IdeaProjects/BACscan/src/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.propGUI",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;164&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/home/IdeaProjects/BACscan/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/home/IdeaProjects/BACscan/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\home\IdeaProjects\BACscan\src" />
@@ -77,7 +80,7 @@
       <recent name="example.UI" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.RequestManagerTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="example.UI.Main" />
       <module name="BACscan" />
@@ -153,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.RequestManagerTest" />
+        <item itemvalue="JUnit.RequestTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UdaManagerTest" />
         <item itemvalue="JUnit.EndpointManagerTest" />
-        <item itemvalue="JUnit.RequestTest" />
       </list>
     </recent_temporary>
   </component>
@@ -202,7 +205,10 @@
       <workItem from="1712781733928" duration="2232000" />
       <workItem from="1712870394229" duration="9168000" />
       <workItem from="1713292666058" duration="14313000" />
-      <workItem from="1713985136616" duration="2122000" />
+      <workItem from="1713985136616" duration="2943000" />
+      <workItem from="1714047428432" duration="815000" />
+      <workItem from="1714058249374" duration="3345000" />
+      <workItem from="1714344392775" duration="3063000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -512,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713986943887</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Updated user guide">
+      <created>1713987513654</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1713987513654</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +543,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added message to response" />
     <MESSAGE value="Added endpoint detection functionality" />
     <MESSAGE value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
     <MESSAGE value="Added colour renderer to detection table" />
@@ -555,7 +567,8 @@
     <MESSAGE value="Added tests to Class Managers" />
     <MESSAGE value="removed add curl endpoint" />
     <MESSAGE value="User guide" />
-    <option name="LAST_COMMIT_MESSAGE" value="User guide" />
+    <MESSAGE value="Updated user guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated user guide" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
