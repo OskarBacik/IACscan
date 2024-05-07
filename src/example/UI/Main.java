@@ -111,7 +111,6 @@ public class Main extends JFrame{
   private JTextArea detectionResponseText;
   private JPanel DetectionMethodPanel;
   private JLabel detectionTokenLabel;
-  private JPanel HelpPanel;
 
   public Main() {
 

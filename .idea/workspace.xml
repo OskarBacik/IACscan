@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Updated user guide">
+    <list default="true" id="dcac4c3e-ee75-4a7d-89e4-7b0352b465e1" name="Changes" comment="Formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/colourRenderers/OverviewTableColourRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/UI/tableModels/UdaTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/UI/tableModels/UdaTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/requests/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/requests/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/example/tokens/TokenManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +75,7 @@
       <recent name="example.UI" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RequestManagerTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="example.UI.Main" />
       <module name="BACscan" />
@@ -94,7 +89,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EndpointManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EndpointTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BACscan" />
       <extension name="coverage">
         <pattern>
@@ -103,7 +98,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.EndpointManagerTest" />
+      <option name="MAIN_CLASS_NAME" value="test.EndpointTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,7 +134,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UdaManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test in BACscan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BACscan" />
       <extension name="coverage">
         <pattern>
@@ -148,19 +143,18 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.UdaManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.test in BACscan" />
+        <item itemvalue="JUnit.EndpointTest" />
         <item itemvalue="JUnit.RequestManagerTest" />
         <item itemvalue="JUnit.RequestTest" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.UdaManagerTest" />
-        <item itemvalue="JUnit.EndpointManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +202,13 @@
       <workItem from="1713985136616" duration="2943000" />
       <workItem from="1714047428432" duration="815000" />
       <workItem from="1714058249374" duration="3345000" />
-      <workItem from="1714344392775" duration="3063000" />
+      <workItem from="1714344392775" duration="4892000" />
+      <workItem from="1714613764569" duration="17000" />
+      <workItem from="1714701233819" duration="3088000" />
+      <workItem from="1714782521909" duration="553000" />
+      <workItem from="1714783304831" duration="1478000" />
+      <workItem from="1714789756266" duration="35000" />
+      <workItem from="1714932393394" duration="5176000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1709000381856</created>
@@ -525,11 +525,29 @@
       <option name="project" value="LOCAL" />
       <updated>1713987513654</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Formatting">
+      <created>1714438791809</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1714438791809</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -543,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added endpoint detection functionality" />
     <MESSAGE value="Added logic to &quot;add to endpoints&quot; button on Endpoint Detection page" />
     <MESSAGE value="Added colour renderer to detection table" />
     <MESSAGE value="Created refresh table functions" />
@@ -568,7 +585,8 @@
     <MESSAGE value="removed add curl endpoint" />
     <MESSAGE value="User guide" />
     <MESSAGE value="Updated user guide" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated user guide" />
+    <MESSAGE value="Formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
